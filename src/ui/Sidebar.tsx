@@ -3,8 +3,7 @@ import MainNav from "./MainNav";
 
 function Sidebar() {
   return (
-    <aside>
-      <h1>Sidebar</h1>
+    <aside className="flex flex-col gap-8 border-r border-neutral-100 px-6 py-8">
       <Logo />
       <MainNav />
     </aside>
