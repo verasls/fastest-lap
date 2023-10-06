@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-interface UserInfoType {
+export interface UserInfoType {
   currentYear: number;
   currentDate: string;
 }
