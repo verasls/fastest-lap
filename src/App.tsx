@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import AppLayout from "./ui/AppLayout";
 import Dashboard from "./pages/Dashboard";
@@ -9,17 +13,18 @@ import Results from "./pages/Results";
 import Plots from "./pages/Plots";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
+  { index: true, element: <Home /> },
   {
-    path: "/app",
+    path: "app",
     element: <AppLayout />,
     children: [
-      { index: true, element: <Dashboard /> },
-      { path: "/app/circuits", element: <Circuits /> },
-      { path: "/app/drivers", element: <Drivers /> },
-      { path: "/app/constructors", element: <Constructors /> },
-      { path: "/app/results", element: <Results /> },
-      { path: "/app/plots", element: <Plots /> },
+      { index: true, element: <Navigate to="/app/dashboard" replace /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "circuits", element: <Circuits /> },
+      { path: "drivers", element: <Drivers /> },
+      { path: "constructors", element: <Constructors /> },
+      { path: "results", element: <Results /> },
+      { path: "plots", element: <Plots /> },
     ],
   },
 ]);
