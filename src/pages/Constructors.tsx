@@ -1,5 +1,12 @@
+import Heading from "../ui/Heading";
+
 function Constructors() {
-  return <div>Constructors</div>;
+  return (
+    <>
+      <Heading type="h1">Constructors</Heading>
+      <p>Constructors content</p>
+    </>
+  );
 }
 
 export default Constructors;

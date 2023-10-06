@@ -1,5 +1,12 @@
+import Heading from "../ui/Heading";
+
 function Drivers() {
-  return <div>Drivers</div>;
+  return (
+    <>
+      <Heading type="h1">Drivers</Heading>
+      <p>Drivers content</p>
+    </>
+  );
 }
 
 export default Drivers;

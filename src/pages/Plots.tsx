@@ -1,5 +1,12 @@
+import Heading from "../ui/Heading";
+
 function Plots() {
-  return <div>Plots</div>;
+  return (
+    <>
+      <Heading type="h1">Plots</Heading>
+      <p>Plots content</p>
+    </>
+  );
 }
 
 export default Plots;
