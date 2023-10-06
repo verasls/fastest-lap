@@ -17,7 +17,6 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        // logo: ["Righteous"],
         logo: ["Electrolize"],
       },
       keyframes: {
