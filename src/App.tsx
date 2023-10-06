@@ -11,6 +11,7 @@ import Drivers from "./pages/Drivers";
 import Constructors from "./pages/Constructors";
 import Results from "./pages/Results";
 import Plots from "./pages/Plots";
+import { UserInfoProvider } from "./contexts/UserInfoContext/UserInfoProvider";
 
 const router = createBrowserRouter([
   { index: true, element: <Home /> },
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <UserInfoProvider>
+      <RouterProvider router={router} />
+    </UserInfoProvider>
+  );
 }
 
 export default App;
