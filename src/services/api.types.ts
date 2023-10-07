@@ -6,6 +6,11 @@ export interface Race {
   circuitName: string;
   country: string;
   Circuit?: any;
+  FirstPractice?: any;
+  SecondPractice?: any;
+  ThirdPractice?: any;
+  Sprint?: any;
+  Qualifying?: any;
 }
 
 export interface MRData {
