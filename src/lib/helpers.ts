@@ -1,3 +1,5 @@
+import countryFlagEmoji from "country-flag-emoji";
+
 export function getCurrentYear(): number {
   return new Date().getFullYear();
 }
@@ -16,4 +18,18 @@ export function getdateDifference(date1: string, date2: string): number {
 
   const diff = Math.abs(date1Time - date2Time) / (1000 * 3600 * 24);
   return diff;
+}
+
+interface CountryType {
+  code: string;
+  emoji: string;
+  name: string;
+  unicode: string;
+}
+
+export function getCountryFlag(countryName: string): string {
+  return countryFlagEmoji.list
+    .filter((country: CountryType) => country.name === countryName)
+    .map((country: CountryType) => country.emoji)
+    .at(0);
 }

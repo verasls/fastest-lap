@@ -4,7 +4,7 @@ import Spinner from "@/ui/Spinner";
 import { Race } from "@/services/api.types";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRaceInfo } from "./useNextRaceInfo";
-import { getdateDifference } from "@/lib/helpers";
+import { getCountryFlag, getdateDifference } from "@/lib/helpers";
 
 function NextRaceInfo() {
   const { currentYear, currentDate } = useUserInfoContext();
@@ -19,6 +19,8 @@ function NextRaceInfo() {
     (nextRaceInfo as Race).date,
     currentDate as string
   );
+
+  const countryFlag = getCountryFlag((nextRaceInfo as Race).country);
 
   return (
     <>
@@ -40,6 +42,7 @@ function NextRaceInfo() {
           {(nextRaceInfo as Race).circuitName} -{" "}
           {(nextRaceInfo as Race).country}
         </p>
+        <span className="pl-1 text-2xl">{countryFlag}</span>
       </div>
     </>
   );
