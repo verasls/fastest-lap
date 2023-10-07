@@ -1,7 +1,7 @@
 import { API_URL } from "@/lib/constants";
 import { ApiResponse, Race } from "./api.types";
 
-export async function getNextRaceInfo(
+export async function getNextRace(
   currentYear: number,
   currentDate: string
 ): Promise<Race | string> {
@@ -12,7 +12,7 @@ export async function getNextRaceInfo(
 
   const data: ApiResponse = await response.json();
 
-  const nextRaceInfo = data?.MRData?.RaceTable?.Races?.map((race) => ({
+  const nextRace = data?.MRData?.RaceTable?.Races?.map((race) => ({
     round: race.round,
     date: race.date,
     time: race.time,
@@ -23,7 +23,7 @@ export async function getNextRaceInfo(
     .filter((race) => race.date >= currentDate)
     .at(0);
 
-  if (!nextRaceInfo) return "The season is over";
+  if (!nextRace) return "The season is over";
 
-  return nextRaceInfo as Race;
+  return nextRace as Race;
 }

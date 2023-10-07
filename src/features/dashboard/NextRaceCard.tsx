@@ -1,14 +1,14 @@
 import { MdOutlineLocationOn, MdTag } from "react-icons/md";
 import Spinner from "@/ui/Spinner";
-import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { Race } from "@/services/api.types";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
-import { useNextRaceInfo } from "./useNextRaceInfo";
+import { useNextRace } from "./useNextRace";
 import { getCountryFlag, getdateDifference } from "@/lib/helpers";
 
-function NextRaceInfo() {
+function NextRaceCard() {
   const { currentYear, currentDate } = useUserInfoContext();
-  const { nextRaceInfo, isLoading } = useNextRaceInfo(
+  const { nextRace, isLoading } = useNextRace(
     currentYear as number,
     currentDate as string
   );
@@ -16,11 +16,11 @@ function NextRaceInfo() {
   if (isLoading) return <Spinner />;
 
   const numDays = getdateDifference(
-    (nextRaceInfo as Race).date,
+    (nextRace as Race).date,
     currentDate as string
   );
 
-  const countryFlag = getCountryFlag((nextRaceInfo as Race).country);
+  const countryFlag = getCountryFlag((nextRace as Race).country);
 
   return (
     <Card>
@@ -35,15 +35,13 @@ function NextRaceInfo() {
         <div className="flex items-center">
           <MdTag className="text-2xl text-red-600" />
           <p>
-            Round {(nextRaceInfo as Race).round} -{" "}
-            {(nextRaceInfo as Race).raceName}
+            Round {(nextRace as Race).round} - {(nextRace as Race).raceName}
           </p>
         </div>
         <div className="flex items-center">
           <MdOutlineLocationOn className="text-2xl text-red-600" />
           <p>
-            {(nextRaceInfo as Race).circuitName} -{" "}
-            {(nextRaceInfo as Race).country}
+            {(nextRace as Race).circuitName} - {(nextRace as Race).country}
           </p>
           <span className="pl-1 text-2xl">{countryFlag}</span>
         </div>
@@ -52,4 +50,4 @@ function NextRaceInfo() {
   );
 }
 
-export default NextRaceInfo;
+export default NextRaceCard;

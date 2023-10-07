@@ -1,5 +1,5 @@
 import Heading from "@/ui/Heading";
-import NextRaceInfo from "@/features/dashboard/NextRaceInfo";
+import NextRaceCard from "@/features/dashboard/NextRaceCard";
 
 function Dashboard() {
   return (
@@ -9,7 +9,7 @@ function Dashboard() {
         id="dash"
         className="grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-6"
       >
-        <NextRaceInfo />
+        <NextRaceCard />
         <div>Dash 2</div>
       </div>
     </>
