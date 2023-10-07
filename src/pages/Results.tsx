@@ -1,4 +1,4 @@
-import Heading from "../ui/Heading";
+import Heading from "@/ui/Heading";
 
 function Results() {
   return (
