@@ -9,3 +9,11 @@ export function getCurrentDate(): string {
   const day: string = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
+
+export function getdateDifference(date1: string, date2: string): number {
+  const date1Time = new Date(date1).getTime();
+  const date2Time = new Date(date2).getTime();
+
+  const diff = Math.abs(date1Time - date2Time) / (1000 * 3600 * 24);
+  return diff;
+}
