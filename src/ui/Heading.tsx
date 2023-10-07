@@ -2,7 +2,7 @@ import React from "react";
 
 interface HeadingProps {
   type: "h1" | "h2" | "h3";
-  children: string | React.JSX.Element | React.JSX.Element[];
+  children: string | string[] | React.JSX.Element | React.JSX.Element[];
 }
 
 function Heading({ type, children }: HeadingProps) {
