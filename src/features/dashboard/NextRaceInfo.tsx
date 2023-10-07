@@ -1,6 +1,6 @@
 import { MdOutlineLocationOn, MdTag } from "react-icons/md";
-import Heading from "@/ui/Heading";
 import Spinner from "@/ui/Spinner";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { Race } from "@/services/api.types";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRaceInfo } from "./useNextRaceInfo";
@@ -23,28 +23,32 @@ function NextRaceInfo() {
   const countryFlag = getCountryFlag((nextRaceInfo as Race).country);
 
   return (
-    <>
-      <Heading type="h2">
-        {numDays < 3
-          ? "It's already a race weekend!"
-          : `Next race weekend in ${numDays} day${numDays > 1 ? "s" : ""}`}
-      </Heading>
-      <div className="flex items-center pt-2">
-        <MdTag className="text-2xl text-red-700" />
-        <p>
-          Round {(nextRaceInfo as Race).round} -{" "}
-          {(nextRaceInfo as Race).raceName}
-        </p>
-      </div>
-      <div className="flex items-center pt-1">
-        <MdOutlineLocationOn className="text-2xl text-red-700" />
-        <p>
-          {(nextRaceInfo as Race).circuitName} -{" "}
-          {(nextRaceInfo as Race).country}
-        </p>
-        <span className="pl-1 text-2xl">{countryFlag}</span>
-      </div>
-    </>
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-xl">
+          {numDays < 3
+            ? "It's already a race weekend!"
+            : `Next race weekend in ${numDays} day${numDays > 1 ? "s" : ""}`}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center">
+          <MdTag className="text-2xl text-red-600" />
+          <p>
+            Round {(nextRaceInfo as Race).round} -{" "}
+            {(nextRaceInfo as Race).raceName}
+          </p>
+        </div>
+        <div className="flex items-center">
+          <MdOutlineLocationOn className="text-2xl text-red-600" />
+          <p>
+            {(nextRaceInfo as Race).circuitName} -{" "}
+            {(nextRaceInfo as Race).country}
+          </p>
+          <span className="pl-1 text-2xl">{countryFlag}</span>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
