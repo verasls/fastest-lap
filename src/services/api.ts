@@ -19,13 +19,13 @@ export async function getNextRace(
     raceName: race.raceName,
     circuitName: race.Circuit.circuitName,
     country: race.Circuit.Location.country,
-    sessions: {
-      session1: {
+    sessions: [
+      {
         sessionName: "Practice 1",
         sessionDate: race.FirstPractice.date,
         sessionTime: race.FirstPractice.time,
       },
-      session2: {
+      {
         sessionName: race.Sprint ? "Qualifying" : "Practice 2",
         sessionDate: race.Sprint
           ? race.Qualifying.date
@@ -34,7 +34,7 @@ export async function getNextRace(
           ? race.Qualifying.time
           : race.SecondPractice.time,
       },
-      session3: {
+      {
         sessionName: race.Sprint ? "Sprint Shootout" : "Practice 3",
         sessionDate: race.Sprint
           ? race.SecondPractice.date
@@ -43,17 +43,17 @@ export async function getNextRace(
           ? race.SecondPractice.time
           : race.ThirdPractice.time,
       },
-      session4: {
+      {
         sessionName: race.Sprint ? "Sprint" : "Qualifying",
         sessionDate: race.Sprint ? race.Sprint.date : race.Qualifying.date,
         sessionTime: race.Sprint ? race.Sprint.time : race.Qualifying.time,
       },
-      session5: {
+      {
         sessionName: "Race",
         sessionDate: race.date,
         sessionTime: race.time,
       },
-    },
+    ],
   }))
     .filter((race) => race.date >= currentDate)
     .at(0);
