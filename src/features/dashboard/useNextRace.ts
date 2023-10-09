@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getNextRace } from "@/services/api";
+import { getNextRace } from "@/services/apiRaces";
 
 export function useNextRace(currentYear: number, currentDate: string) {
   const {
