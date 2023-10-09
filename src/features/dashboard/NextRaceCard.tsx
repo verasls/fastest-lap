@@ -16,7 +16,7 @@ function NextRaceCard() {
   if (isLoading) return <Spinner />;
 
   const numDays = getdateDifference(
-    (nextRace as Race).date,
+    (nextRace as Race).sessions.at(0)?.sessionDate,
     currentDate as string
   );
 
@@ -24,8 +24,11 @@ function NextRaceCard() {
     <Card>
       <CardHeader>
         <CardTitle className="text-xl">
-          {numDays < 3
-            ? "It's already a race weekend!"
+          {(currentDate as string) >=
+            (nextRace as Race).sessions.at(0)?.sessionDate &&
+          (currentDate as string) <=
+            (nextRace as Race).sessions.at(-1)?.sessionDate
+            ? "It's already a race weekend"
             : `Next race weekend in ${numDays} day${numDays > 1 ? "s" : ""}`}
         </CardTitle>
       </CardHeader>
