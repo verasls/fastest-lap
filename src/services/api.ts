@@ -1,5 +1,20 @@
 import { API_URL } from "@/lib/constants";
-import { ApiResponse, Race } from "./api.types";
+
+export interface Session {
+  sessionName: string;
+  sessionDate: string;
+  sessionTime: string;
+}
+
+export interface Race {
+  round: string;
+  raceName: string;
+  date: string;
+  time: string;
+  circuitName: string;
+  country: string;
+  sessions: [Session, Session, Session, Session, Session];
+}
 
 export async function getNextRace(
   currentYear: number,
@@ -10,7 +25,29 @@ export async function getNextRace(
   if (!response.ok)
     throw new Error("Something went wrong with fetching next race info");
 
-  const data: ApiResponse = await response.json();
+  const data: {
+    MRData: {
+      RaceTable: {
+        Races: Array<{
+          round: string;
+          date: string;
+          time: string;
+          raceName: string;
+          Circuit: {
+            circuitName: string;
+            Location: {
+              country: string;
+            };
+          };
+          FirstPractice: { date: string; time: string };
+          SecondPractice: { date: string; time: string };
+          ThirdPractice: { date: string; time: string };
+          Sprint: { date: string; time: string };
+          Qualifying: { date: string; time: string };
+        }>;
+      };
+    };
+  } = await response.json();
 
   const nextRace = data?.MRData?.RaceTable?.Races?.map((race) => ({
     round: race.round,

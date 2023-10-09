@@ -1,5 +1,5 @@
 import { PropsWithChildren, useState } from "react";
-import { UserInfoContext, UserInfoType } from "./UserInfoContext";
+import { UserInfoContext, UserInfo } from "./UserInfoContext";
 import { getCurrentDate, getCurrentYear } from "@/lib/helpers";
 
 export function UserInfoProvider({ children }: PropsWithChildren) {
@@ -7,9 +7,7 @@ export function UserInfoProvider({ children }: PropsWithChildren) {
   const [currentDate] = useState<string>(getCurrentDate());
 
   return (
-    <UserInfoContext.Provider
-      value={{ currentYear, currentDate } as UserInfoType}
-    >
+    <UserInfoContext.Provider value={{ currentYear, currentDate } as UserInfo}>
       {children}
     </UserInfoContext.Provider>
   );

@@ -8,7 +8,7 @@ import {
 } from "@/ui/Table";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
-import { Race } from "@/services/api.types";
+import { Race } from "@/services/api";
 
 function NextRaceTable() {
   const { currentYear, currentDate } = useUserInfoContext();
