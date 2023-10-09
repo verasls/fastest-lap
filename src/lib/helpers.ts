@@ -20,7 +20,7 @@ export function getdateDifference(date1: string, date2: string): number {
   return diff;
 }
 
-interface CountryType {
+interface Country {
   code: string;
   emoji: string;
   name: string;
@@ -28,8 +28,11 @@ interface CountryType {
 }
 
 export function getCountryFlag(countryName: string): string {
+  let countryNameFix = countryName;
+  if (countryNameFix === "USA") countryNameFix = "United States";
+
   return countryFlagEmoji.list
-    .filter((country: CountryType) => country.name === countryName)
-    .map((country: CountryType) => country.emoji)
+    .filter((country: Country) => country.name === countryNameFix)
+    .map((country: Country) => country.emoji)
     .at(0);
 }
