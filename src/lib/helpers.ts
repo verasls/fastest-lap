@@ -20,6 +20,18 @@ export function getdateDifference(date1: string, date2: string): number {
   return diff;
 }
 
+export function getLocalDateTime(utcDateString: string, utcTimeString: string) {
+  const dateTime = new Date(`${utcDateString}T${utcTimeString}`);
+
+  const weekday = dateTime.toLocaleDateString("en", { weekday: "short" });
+  const time = dateTime.toLocaleTimeString("en", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return `${weekday} ${time}`;
+}
+
 interface Country {
   code: string;
   emoji: string;
