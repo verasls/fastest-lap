@@ -1,10 +1,11 @@
 import Spinner from "@/ui/Spinner";
+import NextRaceInfo from "./NextRaceInfo";
+import NextRaceTable from "./NextRaceTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { Race } from "@/services/api.types";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
 import { getdateDifference } from "@/lib/helpers";
-import NextRaceInfo from "./NextRaceInfo";
 
 function NextRaceCard() {
   const { currentYear, currentDate } = useUserInfoContext();
@@ -34,6 +35,7 @@ function NextRaceCard() {
       </CardHeader>
       <CardContent>
         <NextRaceInfo />
+        <NextRaceTable />
       </CardContent>
     </Card>
   );
