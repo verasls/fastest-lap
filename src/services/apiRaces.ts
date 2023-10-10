@@ -1,4 +1,4 @@
-import { API_URL } from "@/lib/constants";
+import { API_URL_ERGAST } from "@/lib/constants";
 
 export interface Session {
   sessionName: string;
@@ -20,7 +20,7 @@ export async function getNextRace(
   currentYear: number,
   currentDate: string
 ): Promise<Race | string> {
-  const response = await fetch(`${API_URL}/${currentYear}.json`);
+  const response = await fetch(`${API_URL_ERGAST}/${currentYear}.json`);
 
   if (!response.ok)
     throw new Error("Something went wrong with fetching next race info");
