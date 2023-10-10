@@ -20,9 +20,7 @@ export function getdateDifference(date1: string, date2: string): number {
   return diff;
 }
 
-export function getLocalDateTime(utcDateString: string, utcTimeString: string) {
-  const dateTime = new Date(`${utcDateString}T${utcTimeString}`);
-
+function formatDateTime(dateTime: Date): string {
   const weekday = dateTime.toLocaleDateString("en", { weekday: "short" });
   const time = dateTime.toLocaleTimeString("en", {
     hour: "2-digit",
@@ -30,6 +28,41 @@ export function getLocalDateTime(utcDateString: string, utcTimeString: string) {
   });
 
   return `${weekday} ${time}`;
+}
+
+export function getLocalDateTime(utcDateString: string, utcTimeString: string) {
+  const dateTime = new Date(`${utcDateString}T${utcTimeString}`);
+  return formatDateTime(dateTime);
+}
+
+function getUtcOffset({
+  dateString,
+  timeZone,
+}: {
+  dateString: string;
+  timeZone: string;
+}): number {
+  const date = new Date(dateString);
+  const timeZoneDate = new Date(
+    date.toLocaleString("en", { timeZone: timeZone })
+  );
+  const utcDate = new Date(date.toLocaleString("en", { timeZone: "UTC" }));
+  return (timeZoneDate.getTime() - utcDate.getTime()) / 1000;
+}
+
+export function getTrackDateTime({
+  utcDateString,
+  utcTimeString,
+  timeZone,
+}: {
+  utcDateString: string;
+  utcTimeString: string;
+  timeZone: string;
+}): string {
+  const utcOffset = getUtcOffset({ dateString: utcDateString, timeZone });
+  const dateTime = new Date(`${utcDateString}T${utcTimeString}`);
+  dateTime.setSeconds(utcOffset);
+  return formatDateTime(dateTime);
 }
 
 interface Country {
