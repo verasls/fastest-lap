@@ -13,7 +13,7 @@ interface NextRaceTableBodyProps {
 }
 
 function NextRaceTableBody({ session, coordinates }: NextRaceTableBodyProps) {
-  const { timeZone, isLoading } = useTimeZone(
+  const { timeZone, isLoading, error } = useTimeZone(
     coordinates.latitude,
     coordinates.longitude
   );
@@ -30,7 +30,13 @@ function NextRaceTableBody({ session, coordinates }: NextRaceTableBodyProps) {
     <TableRow className="font-mono">
       <TableCell>{sessionName}</TableCell>
       <TableCell className="min-w-[125px]">
-        {isLoading ? <SpinnerMini /> : trackDateTime}
+        {isLoading ? (
+          <SpinnerMini />
+        ) : !trackDateTime || error ? (
+          "Not available"
+        ) : (
+          trackDateTime
+        )}
       </TableCell>
       <TableCell className="min-w-[125px]">{localDateTime}</TableCell>
       <TableCell>&nbsp;</TableCell>
