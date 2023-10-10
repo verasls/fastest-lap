@@ -13,6 +13,8 @@ export interface Race {
   time: string;
   circuitName: string;
   country: string;
+  latitude: number;
+  longitude: number;
   sessions: [Session, Session, Session, Session, Session];
 }
 
@@ -37,6 +39,8 @@ export async function getNextRace(
             circuitName: string;
             Location: {
               country: string;
+              lat: string;
+              long: string;
             };
           };
           FirstPractice: { date: string; time: string };
@@ -56,6 +60,8 @@ export async function getNextRace(
     raceName: race.raceName,
     circuitName: race.Circuit.circuitName,
     country: race.Circuit.Location.country,
+    latitude: Number(race.Circuit.Location.lat),
+    longitude: Number(race.Circuit.Location.long),
     sessions: [
       {
         sessionName: "Practice 1",
