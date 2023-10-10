@@ -1,24 +1,22 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/ui/Table";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/ui/Table";
+import NextRaceTableBody from "./NextRaceTableBody";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
-import { Race } from "@/services/api";
-import { getLocalDateTime } from "@/lib/helpers";
+import { Race } from "@/services/apiRaces";
 
 function NextRaceTable() {
   const { currentYear, currentDate } = useUserInfoContext();
   const { nextRace } = useNextRace(currentYear, currentDate);
 
-  const sessions = (nextRace as Race).sessions;
+  const nextRaceData = nextRace as Race;
+  const sessions = nextRaceData.sessions;
+  const coordinates = {
+    latitude: nextRaceData.latitude,
+    longitude: nextRaceData.longitude,
+  };
 
   return (
-    <Table>
+    <Table className="mt-3">
       <TableHeader>
         <TableRow className="font-mono">
           <TableHead>Session</TableHead>
@@ -29,14 +27,11 @@ function NextRaceTable() {
       </TableHeader>
       <TableBody>
         {sessions.map((session) => (
-          <TableRow className="font-mono" key={session.sessionName}>
-            <TableCell>{session.sessionName}</TableCell>
-            <TableCell>&nbsp;</TableCell>
-            <TableCell>
-              {getLocalDateTime(session.sessionDate, session.sessionTime)}
-            </TableCell>
-            <TableCell>&nbsp;</TableCell>
-          </TableRow>
+          <NextRaceTableBody
+            session={session}
+            coordinates={coordinates}
+            key={session.sessionName}
+          />
         ))}
       </TableBody>
     </Table>

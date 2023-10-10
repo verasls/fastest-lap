@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
 import { getdateDifference } from "@/lib/helpers";
-import { Race } from "@/services/api";
+import { Race } from "@/services/apiRaces";
 
 function NextRaceCard() {
   const { currentYear, currentDate } = useUserInfoContext();
