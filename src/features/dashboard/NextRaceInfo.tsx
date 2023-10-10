@@ -2,7 +2,7 @@ import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
 import { getCountryFlag } from "@/lib/helpers";
 import { MdOutlineLocationOn, MdTag } from "react-icons/md";
-import { Race } from "@/services/api";
+import { Race } from "@/services/apiRaces";
 
 function NextRaceInfo() {
   const { currentYear, currentDate } = useUserInfoContext();

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { buttonVariants } from "./button";
+import { buttonVariants } from "./Button";
 
 interface MainNavLinkProps {
   to: string;
