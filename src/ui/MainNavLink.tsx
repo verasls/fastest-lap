@@ -4,7 +4,7 @@ import { buttonVariants } from "./Button";
 
 interface MainNavLinkProps {
   to: string;
-  children: React.JSX.Element | React.JSX.Element[];
+  children: React.ReactNode;
 }
 
 function MainNavLink({ to, children }: MainNavLinkProps) {
