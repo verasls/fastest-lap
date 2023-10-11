@@ -7,6 +7,7 @@ import {
   TableRow,
 } from "@/ui/Table";
 import SpinnerMini from "@/ui/SpinnerMini";
+import Countdown from "./Countdown";
 import ResultsButton from "./ResultsButton";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
@@ -70,8 +71,6 @@ function NextRaceTable() {
     return session;
   });
 
-  console.log(sessionsInfo);
-
   return (
     <Table className="mt-3">
       <TableHeader>
@@ -85,8 +84,10 @@ function NextRaceTable() {
       <TableBody>
         {sessionsInfo.map((session) => (
           <TableRow className="font-mono" key={session.sessionName}>
-            <TableCell>{session.sessionName}</TableCell>
-            <TableCell className="min-w-[125px]">
+            <TableCell className="min-w-[145px]">
+              {session.sessionName}
+            </TableCell>
+            <TableCell className="min-w-[120px]">
               {isLoading ? (
                 <SpinnerMini />
               ) : !session.trackDateTime || error ? (
@@ -95,12 +96,12 @@ function NextRaceTable() {
                 session.trackDateTime
               )}
             </TableCell>
-            <TableCell className="min-w-[125px]">
+            <TableCell className="min-w-[120px]">
               {session.localDateTime}
             </TableCell>
-            <TableCell>
+            <TableCell className="h-14 text-center">
               {session.isNext ? (
-                "Next"
+                <Countdown />
               ) : session.hasFinished ? (
                 <ResultsButton />
               ) : (
