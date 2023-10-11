@@ -30,7 +30,13 @@ function formatDateTime(dateTime: Date): string {
   return `${weekday} ${time}`;
 }
 
-export function getLocalDateTime(utcDateString: string, utcTimeString: string) {
+export function getLocalDateTime({
+  utcDateString,
+  utcTimeString,
+}: {
+  utcDateString: string;
+  utcTimeString: string;
+}) {
   const dateTime = new Date(`${utcDateString}T${utcTimeString}`);
   return formatDateTime(dateTime);
 }
