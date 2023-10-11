@@ -7,6 +7,7 @@ import {
   TableRow,
 } from "@/ui/Table";
 import SpinnerMini from "@/ui/SpinnerMini";
+import ResultsButton from "./ResultsButton";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
 import { Race, Session } from "@/services/apiRaces";
@@ -98,7 +99,13 @@ function NextRaceTable() {
               {session.localDateTime}
             </TableCell>
             <TableCell>
-              {session.isNext ? "Next" : session.hasFinished ? "Results" : ""}
+              {session.isNext ? (
+                "Next"
+              ) : session.hasFinished ? (
+                <ResultsButton />
+              ) : (
+                ""
+              )}
             </TableCell>
           </TableRow>
         ))}
