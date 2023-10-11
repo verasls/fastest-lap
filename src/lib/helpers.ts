@@ -30,13 +30,15 @@ function formatDateTime(dateTime: Date): string {
   return `${weekday} ${time}`;
 }
 
+interface UtcDateTimeString {
+  utcDateString: string;
+  utcTimeString: string;
+}
+
 export function getLocalDateTime({
   utcDateString,
   utcTimeString,
-}: {
-  utcDateString: string;
-  utcTimeString: string;
-}) {
+}: UtcDateTimeString) {
   const dateTime = new Date(`${utcDateString}T${utcTimeString}`);
   return formatDateTime(dateTime);
 }
@@ -91,10 +93,7 @@ export function getCountryFlag(countryName: string): string {
 export function isWithin24Hours({
   utcDateString,
   utcTimeString,
-}: {
-  utcDateString: string;
-  utcTimeString: string;
-}): boolean {
+}: UtcDateTimeString): boolean {
   const localDateTime = new Date(`${utcDateString}T${utcTimeString}`);
   // const now = new Date();
   const now = new Date("2023-10-21T02:53:07Z");
@@ -106,10 +105,7 @@ export function isWithin24Hours({
 export function sessionHasFinished({
   utcDateString,
   utcTimeString,
-}: {
-  utcDateString: string;
-  utcTimeString: string;
-}): boolean {
+}: UtcDateTimeString): boolean {
   const finishTime = new Date(`${utcDateString}T${utcTimeString}`);
   finishTime.setHours(finishTime.getHours() + 1);
   // const now = new Date();
