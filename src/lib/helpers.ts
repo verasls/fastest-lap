@@ -87,3 +87,32 @@ export function getCountryFlag(countryName: string): string {
     .map((country: Country) => country.emoji)
     .at(0);
 }
+
+export function isWithin24Hours({
+  utcDateString,
+  utcTimeString,
+}: {
+  utcDateString: string;
+  utcTimeString: string;
+}): boolean {
+  const localDateTime = new Date(`${utcDateString}T${utcTimeString}`);
+  // const now = new Date();
+  const now = new Date("2023-10-21T02:53:07Z");
+  const difference = localDateTime.getTime() - now.getTime();
+  const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+  return difference < oneDayInMilliseconds && difference > 0;
+}
+
+export function sessionHasFinished({
+  utcDateString,
+  utcTimeString,
+}: {
+  utcDateString: string;
+  utcTimeString: string;
+}): boolean {
+  const finishTime = new Date(`${utcDateString}T${utcTimeString}`);
+  finishTime.setHours(finishTime.getHours() + 1);
+  // const now = new Date();
+  const now = new Date("2023-10-21T02:53:07Z");
+  return now > finishTime;
+}
