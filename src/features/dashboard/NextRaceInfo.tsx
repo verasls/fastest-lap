@@ -15,13 +15,13 @@ export default function NextRaceInfo() {
 
   return (
     <div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
         <MdTag className="text-2xl text-red-600" />
         <p>
           Round {(nextRace as Race).round} - {(nextRace as Race).raceName}
         </p>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
         <MdOutlineLocationOn className="text-2xl text-red-600" />
         <p>
           {(nextRace as Race).circuitName} - {(nextRace as Race).country}
