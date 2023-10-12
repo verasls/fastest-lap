@@ -11,20 +11,22 @@ export default function NextRaceInfo() {
     currentDate as string
   );
 
-  const countryFlag = getCountryFlag((nextRace as Race).country);
+  const nextRaceData = nextRace as Race;
+
+  const countryFlag = getCountryFlag(nextRaceData.country);
 
   return (
     <div>
       <div className="flex items-center gap-2">
         <MdTag className="text-2xl text-red-600" />
         <p>
-          Round {(nextRace as Race).round} - {(nextRace as Race).raceName}
+          Round {nextRaceData.round} - {nextRaceData.raceName}
         </p>
       </div>
       <div className="flex items-center gap-2">
         <MdOutlineLocationOn className="text-2xl text-red-600" />
         <p>
-          {(nextRace as Race).circuitName} - {(nextRace as Race).country}
+          {nextRaceData.circuitName} - {nextRaceData.country}
         </p>
         <span className="pl-1 text-2xl">{countryFlag}</span>
       </div>

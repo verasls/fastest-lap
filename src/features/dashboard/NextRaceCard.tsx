@@ -5,16 +5,30 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
 import { getdateDifference } from "@/lib/helpers";
-import { Race } from "@/services/apiRaces";
+import Empty from "@/ui/Empty";
 
 export default function NextRaceCard() {
   const { currentYear, currentDate } = useUserInfoContext();
   const { nextRace, isLoading } = useNextRace(currentYear, currentDate);
 
   if (isLoading) return <Spinner />;
+  if (!nextRace) return <Empty resourceName="next race" />;
+  if (typeof nextRace === "string")
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">The season is over</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-lg">
+            Cool your engines and fuel up! We&apos;ll be back next year!
+          </p>
+        </CardContent>
+      </Card>
+    );
 
   const numDays = getdateDifference(
-    (nextRace as Race).sessions.at(0)!.sessionDate,
+    nextRace.sessions.at(0)!.sessionDate,
     currentDate as string
   );
 
@@ -22,8 +36,8 @@ export default function NextRaceCard() {
     <Card>
       <CardHeader>
         <CardTitle className="text-xl">
-          {currentDate >= (nextRace as Race).sessions.at(0)!.sessionDate &&
-          currentDate <= (nextRace as Race).sessions.at(-1)!.sessionDate
+          {currentDate >= nextRace.sessions.at(0)!.sessionDate &&
+          currentDate <= nextRace.sessions.at(-1)!.sessionDate
             ? "It'already a race weekend"
             : `Next race weekend in ${numDays} day${numDays > 1 ? "s" : ""}`}
         </CardTitle>
