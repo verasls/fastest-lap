@@ -14,7 +14,7 @@ function NextRaceInfo() {
   const countryFlag = getCountryFlag((nextRace as Race).country);
 
   return (
-    <>
+    <div>
       <div className="flex items-center">
         <MdTag className="text-2xl text-red-600" />
         <p>
@@ -28,7 +28,7 @@ function NextRaceInfo() {
         </p>
         <span className="pl-1 text-2xl">{countryFlag}</span>
       </div>
-    </>
+    </div>
   );
 }
 
