@@ -1,11 +1,11 @@
 import { useNextRace } from "./useNextRace";
-import { getCountryFlag, getUserInfo } from "@/lib/helpers";
+import { getCountryFlag, getCurrentDate } from "@/lib/helpers";
 import { MdOutlineLocationOn, MdTag } from "react-icons/md";
 import { Race } from "@/services/apiRaces";
 
 export default function NextRaceInfo() {
-  const { currentYear, currentDate } = getUserInfo();
-  const { nextRace } = useNextRace(currentYear, currentDate);
+  const currentDate = getCurrentDate();
+  const { nextRace } = useNextRace(currentDate);
 
   const nextRaceData = nextRace as Race;
 

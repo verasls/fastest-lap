@@ -8,9 +8,9 @@ export interface Session {
 
 export interface Race {
   round: string;
-  raceName: string;
   date: string;
   time: string;
+  raceName: string;
   circuitName: string;
   country: string;
   latitude: number;
@@ -18,10 +18,8 @@ export interface Race {
   sessions: [Session, Session, Session, Session, Session];
 }
 
-export async function getNextRace(
-  currentYear: number,
-  currentDate: string
-): Promise<Race | string> {
+async function getRaces(currentDate: string): Promise<Race[]> {
+  const currentYear = new Date(currentDate).getFullYear();
   const response = await fetch(`${API_URL_ERGAST}/${currentYear}.json`);
 
   if (!response.ok)
@@ -53,7 +51,7 @@ export async function getNextRace(
     };
   } = await response.json();
 
-  const nextRaces = data?.MRData?.RaceTable?.Races?.map((race) => ({
+  const races = data?.MRData?.RaceTable?.Races?.map((race) => ({
     round: race.round,
     date: race.date,
     time: race.time,
@@ -96,8 +94,15 @@ export async function getNextRace(
         sessionDate: race.date,
         sessionTime: race.time,
       },
-    ],
-  })).filter((race) => race.date >= currentDate);
+    ] as [Session, Session, Session, Session, Session],
+  }));
+
+  return races;
+}
+
+export async function getNextRace(currentDate: string): Promise<Race | string> {
+  const races = await getRaces(currentDate);
+  const nextRaces = races.filter((race) => race.date >= currentDate);
 
   if (!nextRaces) return "The season is over";
 

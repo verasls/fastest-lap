@@ -13,9 +13,9 @@ import { useNextRace } from "./useNextRace";
 import { Race, Session } from "@/services/apiRaces";
 import { useTimeZone } from "./useTimeZone";
 import {
+  getCurrentDate,
   getLocalDateTime,
   getTrackDateTime,
-  getUserInfo,
   isWithin24Hours,
   sessionHasFinished,
 } from "@/lib/helpers";
@@ -28,8 +28,8 @@ interface SessionsInfo extends Session {
 }
 
 export default function NextRaceTable() {
-  const { currentYear, currentDate } = getUserInfo();
-  const { nextRace } = useNextRace(currentYear, currentDate);
+  const currentDate = getCurrentDate();
+  const { nextRace } = useNextRace(currentDate);
 
   const nextRaceData = nextRace as Race;
   const sessions = nextRaceData.sessions;

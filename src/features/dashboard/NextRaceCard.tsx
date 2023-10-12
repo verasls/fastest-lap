@@ -3,12 +3,12 @@ import NextRaceInfo from "./NextRaceInfo";
 import NextRaceTable from "./NextRaceTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { useNextRace } from "./useNextRace";
-import { getUserInfo, getdateDifference } from "@/lib/helpers";
+import { getCurrentDate, getdateDifference } from "@/lib/helpers";
 import Empty from "@/ui/Empty";
 
 export default function NextRaceCard() {
-  const { currentYear, currentDate } = getUserInfo();
-  const { nextRace, isLoading } = useNextRace(currentYear, currentDate);
+  const currentDate = getCurrentDate();
+  const { nextRace, isLoading } = useNextRace(currentDate);
 
   if (isLoading) return <Spinner />;
   if (!nextRace) return <Empty resourceName="next race" />;

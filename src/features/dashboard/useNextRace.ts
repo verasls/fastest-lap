@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getNextRace } from "@/services/apiRaces";
 
-export function useNextRace(currentYear: number, currentDate: string) {
+export function useNextRace(currentDate: string) {
   const {
     data: nextRace,
     isLoading,
     error,
   } = useQuery({
     queryKey: ["nextRace"],
-    queryFn: () => getNextRace(currentYear, currentDate),
+    queryFn: () => getNextRace(currentDate),
   });
 
   return { nextRace, isLoading, error };
