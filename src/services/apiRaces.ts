@@ -119,3 +119,12 @@ export async function getNextRace(currentDate: string): Promise<Race | string> {
 
   return nextRace as Race;
 }
+
+export async function getLastRaces(currentDate: string, numRaces: number = 5) {
+  const races = await getRaces(currentDate);
+  const lastRaces = races
+    .filter((race) => race.date < currentDate)
+    .slice(-numRaces);
+
+  return lastRaces;
+}
