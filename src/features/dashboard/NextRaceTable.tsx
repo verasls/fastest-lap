@@ -20,12 +20,12 @@ import {
   sessionHasFinished,
 } from "@/lib/helpers";
 
-interface SessionsInfo extends Session {
+type SessionsInfo = Session & {
   trackDateTime: string | undefined;
   localDateTime: string;
   isNext: boolean;
   hasFinished: boolean;
-}
+};
 
 export default function NextRaceTable() {
   const currentDate = getCurrentDate();

@@ -1,12 +1,12 @@
 import { API_URL_ERGAST } from "@/lib/constants";
 
-export interface Session {
+export type Session = {
   sessionName: string;
   sessionDate: string;
   sessionTime: string;
-}
+};
 
-export interface Race {
+export type Race = {
   round: string;
   date: string;
   time: string;
@@ -16,7 +16,7 @@ export interface Race {
   latitude: number;
   longitude: number;
   sessions: [Session, Session, Session, Session, Session];
-}
+};
 
 async function getRaces(currentDate: string): Promise<Race[]> {
   const currentYear = new Date(currentDate).getFullYear();

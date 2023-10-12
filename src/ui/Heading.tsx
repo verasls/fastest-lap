@@ -1,9 +1,9 @@
 import React from "react";
 
-interface HeadingProps {
+type HeadingProps = {
   type: "h1" | "h2" | "h3";
-  children: string | string[] | React.JSX.Element | React.JSX.Element[];
-}
+  children: React.ReactNode;
+};
 
 export default function Heading({ type, children }: HeadingProps) {
   switch (type) {

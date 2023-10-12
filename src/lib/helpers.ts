@@ -12,10 +12,10 @@ export function getCurrentDate(): string {
   return `${year}-${month}-${day}`;
 }
 
-interface UserInfo {
+type UserInfo = {
   currentYear: number;
   currentDate: string;
-}
+};
 
 export function getUserInfo(): UserInfo {
   const currentYear = getCurrentYear();
@@ -41,10 +41,10 @@ function formatDateTime(dateTime: Date): string {
   return `${weekday} ${time}`;
 }
 
-interface UtcDateTimeString {
+type UtcDateTimeString = {
   utcDateString: string;
   utcTimeString: string;
-}
+};
 
 export function getLocalDateTime({
   utcDateString,
@@ -85,12 +85,12 @@ export function getTrackDateTime({
   return formatDateTime(dateTime);
 }
 
-interface Country {
+type Country = {
   code: string;
   emoji: string;
   name: string;
   unicode: string;
-}
+};
 
 export function getCountryFlag(countryName: string): string {
   let countryNameFix = countryName;

@@ -2,10 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { buttonVariants } from "./Button";
 
-interface MainNavLinkProps {
+type MainNavLinkProps = {
   to: string;
   children: React.ReactNode;
-}
+};
 
 export default function MainNavLink({ to, children }: MainNavLinkProps) {
   const linkClass: string = `${buttonVariants({
