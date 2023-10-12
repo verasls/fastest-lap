@@ -95,8 +95,7 @@ export function isWithin24Hours({
   utcTimeString,
 }: UtcDateTimeString): boolean {
   const localDateTime = new Date(`${utcDateString}T${utcTimeString}`);
-  // const now = new Date();
-  const now = new Date("2023-10-21T02:53:07Z");
+  const now = new Date();
   const difference = localDateTime.getTime() - now.getTime();
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
   return difference < oneDayInMilliseconds && difference > 0;
@@ -108,8 +107,7 @@ export function sessionHasFinished({
 }: UtcDateTimeString): boolean {
   const finishTime = new Date(`${utcDateString}T${utcTimeString}`);
   finishTime.setHours(finishTime.getHours() + 1);
-  // const now = new Date();
-  const now = new Date("2023-10-21T02:53:07Z");
+  const now = new Date();
   return now > finishTime;
 }
 
@@ -121,8 +119,7 @@ export function getTimeRemainingInSeconds({
   targetTime: string;
 }): number {
   const targetDateTime = new Date(`${targetDate}T${targetTime}`);
-  // const now = new Date();
-  const now = new Date("2023-10-21T02:53:07Z");
+  const now = new Date();
   const timeRemainingSec = (targetDateTime.getTime() - now.getTime()) / 1000;
   return timeRemainingSec;
 }
