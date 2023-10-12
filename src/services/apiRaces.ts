@@ -1,10 +1,13 @@
 import { API_URL_ERGAST } from "@/lib/constants";
+import { TupleOfLength } from "@/lib/types";
 
 export type Session = {
   sessionName: string;
   sessionDate: string;
   sessionTime: string;
 };
+
+type raceSessions = TupleOfLength<Session, 5>;
 
 export type Race = {
   round: string;
@@ -15,7 +18,7 @@ export type Race = {
   country: string;
   latitude: number;
   longitude: number;
-  sessions: [Session, Session, Session, Session, Session];
+  sessions: raceSessions;
 };
 
 async function getRaces(currentDate: string): Promise<Race[]> {
@@ -94,7 +97,7 @@ async function getRaces(currentDate: string): Promise<Race[]> {
         sessionDate: race.date,
         sessionTime: race.time,
       },
-    ] as [Session, Session, Session, Session, Session],
+    ] as raceSessions,
   }));
 
   return races;
