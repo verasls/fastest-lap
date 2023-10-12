@@ -95,6 +95,8 @@ interface Country {
 export function getCountryFlag(countryName: string): string {
   let countryNameFix = countryName;
   if (countryNameFix === "USA") countryNameFix = "United States";
+  if (countryNameFix === "UK") countryNameFix = "United Kingdom";
+  if (countryNameFix === "UAE") countryNameFix = "United Arab Emirates";
 
   return countryFlagEmoji.list
     .filter((country: Country) => country.name === countryNameFix)
