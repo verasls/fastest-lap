@@ -53,7 +53,7 @@ export async function getNextRace(
     };
   } = await response.json();
 
-  const nextRace = data?.MRData?.RaceTable?.Races?.map((race) => ({
+  const nextRaces = data?.MRData?.RaceTable?.Races?.map((race) => ({
     round: race.round,
     date: race.date,
     time: race.time,
@@ -97,11 +97,20 @@ export async function getNextRace(
         sessionTime: race.time,
       },
     ],
-  }))
-    .filter((race) => race.date >= currentDate)
-    .at(0);
+  })).filter((race) => race.date >= currentDate);
 
-  if (!nextRace) return "The season is over";
+  if (!nextRaces) return "The season is over";
+
+  const now = new Date().getTime();
+  let raceTime: Date | number = new Date(
+    `${nextRaces.at(0)?.date}T${nextRaces.at(0)?.time}`
+  );
+  raceTime.setHours(raceTime.getHours() + 6);
+  raceTime = raceTime.getTime();
+
+  let index: number;
+  now < raceTime ? (index = 0) : (index = 1);
+  const nextRace = nextRaces.at(index);
 
   return nextRace as Race;
 }
