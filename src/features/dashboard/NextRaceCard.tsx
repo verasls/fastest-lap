@@ -2,13 +2,12 @@ import Spinner from "@/ui/Spinner";
 import NextRaceInfo from "./NextRaceInfo";
 import NextRaceTable from "./NextRaceTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
-import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
-import { getdateDifference } from "@/lib/helpers";
+import { getUserInfo, getdateDifference } from "@/lib/helpers";
 import Empty from "@/ui/Empty";
 
 export default function NextRaceCard() {
-  const { currentYear, currentDate } = useUserInfoContext();
+  const { currentYear, currentDate } = getUserInfo();
   const { nextRace, isLoading } = useNextRace(currentYear, currentDate);
 
   if (isLoading) return <Spinner />;
@@ -29,7 +28,7 @@ export default function NextRaceCard() {
 
   const numDays = getdateDifference(
     nextRace.sessions.at(0)!.sessionDate,
-    currentDate as string
+    currentDate
   );
 
   return (

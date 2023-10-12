@@ -12,6 +12,17 @@ export function getCurrentDate(): string {
   return `${year}-${month}-${day}`;
 }
 
+interface UserInfo {
+  currentYear: number;
+  currentDate: string;
+}
+
+export function getUserInfo(): UserInfo {
+  const currentYear = getCurrentYear();
+  const currentDate = getCurrentDate();
+  return { currentYear, currentDate };
+}
+
 export function getdateDifference(date1: string, date2: string): number {
   const date1Time = new Date(date1).getTime();
   const date2Time = new Date(date2).getTime();

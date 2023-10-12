@@ -13,7 +13,6 @@ import Drivers from "./pages/Drivers";
 import Constructors from "./pages/Constructors";
 import Results from "./pages/Results";
 import Plots from "./pages/Plots";
-import { UserInfoProvider } from "./contexts/UserInfoContext/UserInfoProvider";
 
 const router = createBrowserRouter([
   { index: true, element: <Home /> },
@@ -36,12 +35,10 @@ const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <UserInfoProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
 
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </UserInfoProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }

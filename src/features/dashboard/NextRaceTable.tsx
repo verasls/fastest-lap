@@ -9,13 +9,13 @@ import {
 import SpinnerMini from "@/ui/SpinnerMini";
 import Countdown from "./Countdown";
 import ResultsButton from "./ResultsButton";
-import { useUserInfoContext } from "@/contexts/UserInfoContext/UserInfoContext";
 import { useNextRace } from "./useNextRace";
 import { Race, Session } from "@/services/apiRaces";
 import { useTimeZone } from "./useTimeZone";
 import {
   getLocalDateTime,
   getTrackDateTime,
+  getUserInfo,
   isWithin24Hours,
   sessionHasFinished,
 } from "@/lib/helpers";
@@ -28,7 +28,7 @@ interface SessionsInfo extends Session {
 }
 
 export default function NextRaceTable() {
-  const { currentYear, currentDate } = useUserInfoContext();
+  const { currentYear, currentDate } = getUserInfo();
   const { nextRace } = useNextRace(currentYear, currentDate);
 
   const nextRaceData = nextRace as Race;
