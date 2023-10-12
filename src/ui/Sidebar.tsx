@@ -1,7 +1,7 @@
 import Logo from "./Logo";
 import MainNav from "./MainNav";
 
-function Sidebar() {
+export default function Sidebar() {
   return (
     <aside className="flex flex-col gap-9 border-r border-neutral-100 px-6 py-8">
       <Logo />
@@ -9,5 +9,3 @@ function Sidebar() {
     </aside>
   );
 }
-
-export default Sidebar;

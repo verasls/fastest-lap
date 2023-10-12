@@ -1,7 +1,7 @@
 import Heading from "@/ui/Heading";
 import NextRaceCard from "@/features/dashboard/NextRaceCard";
 
-function Dashboard() {
+export default function Dashboard() {
   return (
     <>
       <Heading type="h1">Dashboard</Heading>
@@ -12,5 +12,3 @@ function Dashboard() {
     </>
   );
 }
-
-export default Dashboard;

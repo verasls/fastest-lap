@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 
-function AppLayout() {
+export default function AppLayout() {
   return (
     <div className="grid h-screen grid-cols-[14rem_1fr]">
       <Sidebar />
@@ -13,5 +13,3 @@ function AppLayout() {
     </div>
   );
 }
-
-export default AppLayout;

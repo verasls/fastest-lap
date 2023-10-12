@@ -1,6 +1,6 @@
 import Heading from "@/ui/Heading";
 
-function Circuits() {
+export default function Circuits() {
   return (
     <>
       <Heading type="h1">Circuits</Heading>
@@ -8,5 +8,3 @@ function Circuits() {
     </>
   );
 }
-
-export default Circuits;

@@ -7,7 +7,7 @@ interface MainNavLinkProps {
   children: React.ReactNode;
 }
 
-function MainNavLink({ to, children }: MainNavLinkProps) {
+export default function MainNavLink({ to, children }: MainNavLinkProps) {
   const linkClass: string = `${buttonVariants({
     variant: "ghost",
   })} w-full gap-3 [&>svg]:hover:text-red-600 aria-[current=page]:bg-neutral-100 aria-[current=page]:text-neutral-900 [&>svg]:aria-[current=page]:text-red-600`.replace(
@@ -20,5 +20,3 @@ function MainNavLink({ to, children }: MainNavLinkProps) {
     </NavLink>
   );
 }
-
-export default MainNavLink;

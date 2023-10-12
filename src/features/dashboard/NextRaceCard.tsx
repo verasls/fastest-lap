@@ -7,7 +7,7 @@ import { useNextRace } from "./useNextRace";
 import { getdateDifference } from "@/lib/helpers";
 import { Race } from "@/services/apiRaces";
 
-function NextRaceCard() {
+export default function NextRaceCard() {
   const { currentYear, currentDate } = useUserInfoContext();
   const { nextRace, isLoading } = useNextRace(currentYear, currentDate);
 
@@ -35,5 +35,3 @@ function NextRaceCard() {
     </Card>
   );
 }
-
-export default NextRaceCard;

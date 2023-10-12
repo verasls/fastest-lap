@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Logo() {
+export default function Logo() {
   return (
     <Link to="/" className="flex flex-col items-center">
       <img src="/logo.png" className="h-24 w-auto" />
@@ -8,5 +8,3 @@ function Logo() {
     </Link>
   );
 }
-
-export default Logo;

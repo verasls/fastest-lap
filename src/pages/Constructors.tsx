@@ -1,6 +1,6 @@
 import Heading from "@/ui/Heading";
 
-function Constructors() {
+export default function Constructors() {
   return (
     <>
       <Heading type="h1">Constructors</Heading>
@@ -8,5 +8,3 @@ function Constructors() {
     </>
   );
 }
-
-export default Constructors;

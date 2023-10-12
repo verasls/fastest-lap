@@ -4,7 +4,7 @@ import { getCountryFlag } from "@/lib/helpers";
 import { MdOutlineLocationOn, MdTag } from "react-icons/md";
 import { Race } from "@/services/apiRaces";
 
-function NextRaceInfo() {
+export default function NextRaceInfo() {
   const { currentYear, currentDate } = useUserInfoContext();
   const { nextRace } = useNextRace(
     currentYear as number,
@@ -31,5 +31,3 @@ function NextRaceInfo() {
     </div>
   );
 }
-
-export default NextRaceInfo;

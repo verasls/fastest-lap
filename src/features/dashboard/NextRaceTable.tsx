@@ -27,7 +27,7 @@ interface SessionsInfo extends Session {
   hasFinished: boolean;
 }
 
-function NextRaceTable() {
+export default function NextRaceTable() {
   const { currentYear, currentDate } = useUserInfoContext();
   const { nextRace } = useNextRace(currentYear, currentDate);
 
@@ -117,5 +117,3 @@ function NextRaceTable() {
     </Table>
   );
 }
-
-export default NextRaceTable;

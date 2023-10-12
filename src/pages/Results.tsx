@@ -1,6 +1,6 @@
 import Heading from "@/ui/Heading";
 
-function Results() {
+export default function Results() {
   return (
     <>
       <Heading type="h1">Results</Heading>
@@ -8,5 +8,3 @@ function Results() {
     </>
   );
 }
-
-export default Results;

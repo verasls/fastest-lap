@@ -1,6 +1,6 @@
 import Heading from "@/ui/Heading";
 
-function Drivers() {
+export default function Drivers() {
   return (
     <>
       <Heading type="h1">Drivers</Heading>
@@ -8,5 +8,3 @@ function Drivers() {
     </>
   );
 }
-
-export default Drivers;

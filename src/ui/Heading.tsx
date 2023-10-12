@@ -5,7 +5,7 @@ interface HeadingProps {
   children: string | string[] | React.JSX.Element | React.JSX.Element[];
 }
 
-function Heading({ type, children }: HeadingProps) {
+export default function Heading({ type, children }: HeadingProps) {
   switch (type) {
     case "h1":
       return <h1 className="text-3xl font-semibold">{children}</h1>;
@@ -15,5 +15,3 @@ function Heading({ type, children }: HeadingProps) {
       return <h3 className="text-xl font-medium">{children}</h3>;
   }
 }
-
-export default Heading;

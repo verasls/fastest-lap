@@ -8,7 +8,7 @@ import {
 } from "react-icons/md";
 import MainNavLink from "./MainNavLink";
 
-function MainNav() {
+export default function MainNav() {
   return (
     <nav>
       <ul className="flex flex-col gap-3">
@@ -52,5 +52,3 @@ function MainNav() {
     </nav>
   );
 }
-
-export default MainNav;

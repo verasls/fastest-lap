@@ -1,6 +1,6 @@
 import Heading from "@/ui/Heading";
 
-function Plots() {
+export default function Plots() {
   return (
     <>
       <Heading type="h1">Plots</Heading>
@@ -8,5 +8,3 @@ function Plots() {
     </>
   );
 }
-
-export default Plots;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTimeRemainingInSeconds } from "@/lib/helpers";
 
-function Countdown({
+export default function Countdown({
   sessionDate,
   sessionTime,
 }: {
@@ -52,5 +52,3 @@ function Countdown({
     </div>
   );
 }
-
-export default Countdown;
