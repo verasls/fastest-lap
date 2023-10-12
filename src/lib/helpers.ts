@@ -76,8 +76,9 @@ export function getTrackDateTime({
 }: {
   utcDateString: string;
   utcTimeString: string;
-  timeZone: string;
-}): string {
+  timeZone: string | undefined;
+}): string | undefined {
+  if (!timeZone) return undefined;
   const utcOffset = getUtcOffset({ dateString: utcDateString, timeZone });
   const dateTime = new Date(`${utcDateString}T${utcTimeString}`);
   dateTime.setSeconds(utcOffset);

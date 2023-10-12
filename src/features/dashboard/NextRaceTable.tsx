@@ -21,7 +21,7 @@ import {
 } from "@/lib/helpers";
 
 interface SessionsInfo extends Session {
-  trackDateTime: string;
+  trackDateTime: string | undefined;
   localDateTime: string;
   isNext: boolean;
   hasFinished: boolean;
@@ -48,7 +48,7 @@ export default function NextRaceTable() {
     trackDateTime: getTrackDateTime({
       utcDateString: session.sessionDate,
       utcTimeString: session.sessionTime,
-      timeZone: timeZone as string,
+      timeZone: timeZone,
     }),
     localDateTime: getLocalDateTime({
       utcDateString: session.sessionDate,
