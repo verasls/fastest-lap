@@ -101,7 +101,10 @@ function NextRaceTable() {
             </TableCell>
             <TableCell className="h-14 text-center">
               {session.isNext ? (
-                <Countdown />
+                <Countdown
+                  sessionDate={session.sessionDate}
+                  sessionTime={session.sessionTime}
+                />
               ) : session.hasFinished ? (
                 <ResultsButton />
               ) : (

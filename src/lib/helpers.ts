@@ -112,3 +112,17 @@ export function sessionHasFinished({
   const now = new Date("2023-10-21T02:53:07Z");
   return now > finishTime;
 }
+
+export function getTimeRemainingInSeconds({
+  targetDate,
+  targetTime,
+}: {
+  targetDate: string;
+  targetTime: string;
+}): number {
+  const targetDateTime = new Date(`${targetDate}T${targetTime}`);
+  // const now = new Date();
+  const now = new Date("2023-10-21T02:53:07Z");
+  const timeRemainingSec = (targetDateTime.getTime() - now.getTime()) / 1000;
+  return timeRemainingSec;
+}
