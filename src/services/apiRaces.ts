@@ -7,7 +7,7 @@ export type Session = {
   sessionTime: string;
 };
 
-type raceSessions = TupleOfLength<Session, 5>;
+type RaceSessions = TupleOfLength<Session, 5>;
 
 export type Race = {
   round: string;
@@ -18,7 +18,7 @@ export type Race = {
   country: string;
   latitude: number;
   longitude: number;
-  sessions: raceSessions;
+  sessions: RaceSessions;
 };
 
 async function getAllRaces(year: number): Promise<Race[]> {
@@ -96,8 +96,8 @@ async function getAllRaces(year: number): Promise<Race[]> {
         sessionDate: race.date,
         sessionTime: race.time,
       },
-    ] as raceSessions,
-  }));
+    ] as RaceSessions,
+  })) as Race[];
 
   return races;
 }
@@ -123,10 +123,13 @@ export async function getNextRace(currentDate: string): Promise<Race | string> {
   return nextRace as Race;
 }
 
-export async function getLastRaces(currentDate: string, numRaces: number = 5) {
+export async function getLastRaces(
+  currentDate: string,
+  numRaces: number = 5
+): Promise<Race[]> {
   const currentYear = new Date(currentDate).getFullYear();
   const races = await getAllRaces(currentYear);
-  const lastRaces = races
+  const lastRaces: Race[] = races
     .filter((race) => race.date < currentDate)
     .slice(-numRaces);
 
