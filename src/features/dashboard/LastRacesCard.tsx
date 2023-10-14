@@ -1,8 +1,9 @@
 import Spinner from "@/ui/Spinner";
-import { Card, CardHeader, CardTitle } from "@/ui/Card";
+import Empty from "@/ui/Empty";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { useLastRaces } from "./useLastRaces";
 import { getCurrentDate } from "@/lib/helpers";
-import Empty from "@/ui/Empty";
+import LastRacesTable from "./LastRacesTable";
 
 export default function LastRacesCard() {
   const currentDate = getCurrentDate();
@@ -16,6 +17,9 @@ export default function LastRacesCard() {
       <CardHeader>
         <CardTitle className="text-xl">Last {lastRaces.length} races</CardTitle>
       </CardHeader>
+      <CardContent>
+        <LastRacesTable lastRaces={lastRaces} />
+      </CardContent>
     </Card>
   );
 }
