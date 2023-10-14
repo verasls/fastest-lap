@@ -14,9 +14,9 @@ export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
     .sort((a, b) => b - a);
 
   return (
-    <Table className="mt-3">
+    <Table className="mt-3 font-mono">
       <TableHeader>
-        <TableRow className="font-mono">
+        <TableRow>
           <TableHead>Race</TableHead>
           <TableHead>1st</TableHead>
           <TableHead>2nd</TableHead>

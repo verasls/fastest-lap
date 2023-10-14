@@ -72,9 +72,9 @@ export default function NextRaceTable() {
   });
 
   return (
-    <Table className="mt-3">
+    <Table className="mt-3 font-mono">
       <TableHeader>
-        <TableRow className="font-mono">
+        <TableRow>
           <TableHead>Session</TableHead>
           <TableHead>Track Time</TableHead>
           <TableHead>Local Time</TableHead>
@@ -83,7 +83,7 @@ export default function NextRaceTable() {
       </TableHeader>
       <TableBody>
         {sessionsInfo.map((session) => (
-          <TableRow className="font-mono" key={session.sessionName}>
+          <TableRow key={session.sessionName}>
             <TableCell className="min-w-[145px]">
               {session.sessionName}
             </TableCell>
