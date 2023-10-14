@@ -1,16 +1,7 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/ui/Table";
-import Spinner from "@/ui/Spinner";
-import Empty from "@/ui/Empty";
-import { useRaceResults } from "../results/useRaceResults";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/ui/Table";
 import { Race } from "@/services/apiRaces";
 import { getCurrentDate } from "@/lib/helpers";
+import LastRacesTableBody from "./LastRacesTableBody";
 
 type LastRacesTableProps = { lastRaces: Race[] };
 
@@ -20,15 +11,7 @@ export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
 
   const roundNumbers = lastRaces
     .map((race) => Number(race.round))
-    .at(-1) as number;
-
-  const { results, isLoading } = useRaceResults({
-    year: currentYear,
-    round: roundNumbers,
-  });
-
-  if (isLoading) return <Spinner />;
-  if (!results) return <Empty resourceName="race results" />;
+    .sort((a, b) => b - a);
 
   return (
     <Table className="mt-3">
@@ -41,14 +24,9 @@ export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell>
-            {`${results.raceInfo.season} ${results.raceInfo.raceName}`}
-          </TableCell>
-          <TableCell>{results.racePositions.at(0)!.driverCode}</TableCell>
-          <TableCell>{results.racePositions.at(1)!.driverCode}</TableCell>
-          <TableCell>{results.racePositions.at(2)!.driverCode}</TableCell>
-        </TableRow>
+        {roundNumbers.map((round) => (
+          <LastRacesTableBody year={currentYear} round={round} key={round} />
+        ))}
       </TableBody>
     </Table>
   );
