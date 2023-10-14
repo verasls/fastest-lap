@@ -13,7 +13,7 @@ export function useRaceResults({
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["results"],
+    queryKey: ["results", year, round],
     queryFn: () => getRaceResults({ year, round }),
   });
 
