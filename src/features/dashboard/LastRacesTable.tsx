@@ -18,6 +18,7 @@ export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
       <TableHeader>
         <TableRow>
           <TableHead>Race</TableHead>
+          <TableHead>Date</TableHead>
           <TableHead>1st</TableHead>
           <TableHead>2nd</TableHead>
           <TableHead>3rd</TableHead>
