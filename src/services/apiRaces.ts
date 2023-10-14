@@ -21,9 +21,8 @@ export type Race = {
   sessions: raceSessions;
 };
 
-async function getRaces(currentDate: string): Promise<Race[]> {
-  const currentYear = new Date(currentDate).getFullYear();
-  const response = await fetch(`${API_URL_ERGAST}/${currentYear}.json`);
+async function getAllRaces(year: number): Promise<Race[]> {
+  const response = await fetch(`${API_URL_ERGAST}/${year}.json`);
 
   if (!response.ok)
     throw new Error("Something went wrong with fetching next race info");
@@ -104,7 +103,8 @@ async function getRaces(currentDate: string): Promise<Race[]> {
 }
 
 export async function getNextRace(currentDate: string): Promise<Race | string> {
-  const races = await getRaces(currentDate);
+  const currentYear = new Date(currentDate).getFullYear();
+  const races = await getAllRaces(currentYear);
   const nextRaces = races.filter((race) => race.date >= currentDate);
 
   if (!nextRaces) return "The season is over";
@@ -124,7 +124,8 @@ export async function getNextRace(currentDate: string): Promise<Race | string> {
 }
 
 export async function getLastRaces(currentDate: string, numRaces: number = 5) {
-  const races = await getRaces(currentDate);
+  const currentYear = new Date(currentDate).getFullYear();
+  const races = await getAllRaces(currentYear);
   const lastRaces = races
     .filter((race) => race.date < currentDate)
     .slice(-numRaces);
