@@ -7,6 +7,7 @@ export type RaceInfo = {
   circuitName: string;
   date: string;
   time: string;
+  country: string;
 };
 
 export type RacePositions = {
@@ -47,7 +48,10 @@ export async function getRaceResults({
           raceName: string;
           date: string;
           time: string;
-          Circuit: { circuitName: string };
+          Circuit: {
+            circuitName: string;
+            Location: { country: string };
+          };
           Results: Array<{
             position: string;
             number: string;
@@ -71,6 +75,7 @@ export async function getRaceResults({
     circuitName: race.Circuit.circuitName,
     date: race.date,
     time: race.time,
+    country: race.Circuit.Location.country,
   })).at(0) as RaceInfo;
 
   const racePositions = data?.MRData?.RaceTable?.Races?.at(0)?.Results.map(

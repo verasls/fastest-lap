@@ -2,6 +2,7 @@ import { TableCell, TableRow } from "@/ui/Table";
 import Spinner from "@/ui/Spinner";
 import Empty from "@/ui/Empty";
 import { useRaceResults } from "../results/useRaceResults";
+import { getCountryFlag } from "@/lib/helpers";
 
 type LastRacesTableBodyProps = { year: number; round: number };
 
@@ -22,8 +23,11 @@ export default function LastRacesTableBody({
 
   return (
     <TableRow>
-      <TableCell>
-        {`${results.raceInfo.season} ${results.raceInfo.raceName}`}
+      <TableCell className="flex items-center gap-2">
+        <span className="text-xl">
+          {getCountryFlag(results.raceInfo.country)}
+        </span>{" "}
+        {results.raceInfo.raceName}
       </TableCell>
       <TableCell>{raceDate}</TableCell>
       <TableCell>{results.racePositions.at(0)!.driverCode}</TableCell>
