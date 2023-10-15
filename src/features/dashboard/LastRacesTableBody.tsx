@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { TableCell, TableRow } from "@/ui/Table";
 import Spinner from "@/ui/Spinner";
 import Empty from "@/ui/Empty";
@@ -24,11 +25,15 @@ export default function LastRacesTableBody({
 
   return (
     <TableRow>
-      <TableCell className="flex items-center gap-2">
-        <span className="text-xl">
-          {getCountryFlag(results.raceInfo.country)}
-        </span>{" "}
-        {results.raceInfo.raceName}
+      <TableCell>
+        <Link to="/app/results" className="group flex items-center gap-2">
+          <span className="text-xl group-hover:underline group-hover:decoration-transparent">
+            {getCountryFlag(results.raceInfo.country)}
+          </span>{" "}
+          <span className="decoration-neutral-800 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-2">
+            {results.raceInfo.raceName}
+          </span>
+        </Link>
       </TableCell>
       <TableCell>{raceDate}</TableCell>
       {results.racePositions.slice(0, 3).map((result) => (
