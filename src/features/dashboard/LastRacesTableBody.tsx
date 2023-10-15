@@ -36,7 +36,7 @@ export default function LastRacesTableBody({
 
   return (
     <TableRow>
-      <TableCell>
+      <TableCell className="h-14">
         <Link to="/app/results" className="group flex items-center gap-2">
           <span className="text-xl group-hover:underline group-hover:decoration-transparent">
             {getCountryFlag(results.raceInfo.country)}

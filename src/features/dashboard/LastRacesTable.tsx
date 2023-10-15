@@ -19,9 +19,9 @@ export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
         <TableRow>
           <TableHead>Race</TableHead>
           <TableHead>Date</TableHead>
-          <TableHead>1st</TableHead>
-          <TableHead>2nd</TableHead>
-          <TableHead>3rd</TableHead>
+          <TableHead className="text-center">1st</TableHead>
+          <TableHead className="text-center">2nd</TableHead>
+          <TableHead className="text-center">3rd</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
