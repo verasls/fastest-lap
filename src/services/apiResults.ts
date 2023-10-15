@@ -86,7 +86,7 @@ export async function getRaceResults({
       driverFirstName: result.Driver.givenName,
       driverLastName: result.Driver.familyName,
       driverNationality: result.Driver.nationality,
-      constructorName: result.Constructor.name,
+      constructorName: result.Constructor.name.replace(" F1 Team", ""),
     })
   ) as RacePositions[];
 
