@@ -1,17 +1,21 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/ui/Table";
 import { Race } from "@/services/apiRaces";
-import { getCurrentDate } from "@/lib/helpers";
 import LastRacesTableBody from "./LastRacesTableBody";
 
 type LastRacesTableProps = { lastRaces: Race[] };
 
 export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
-  const currentDate = getCurrentDate();
-  const currentYear = new Date(currentDate).getFullYear();
+  const lastRacesInfo = lastRaces
+    .map((race) => ({
+      year: new Date(race.date).getFullYear(),
+      round: race.round,
+    }))
+    .sort((a, b) => {
+      if (a.year < b.year) return 1;
+      if (a.year > b.year) return -1;
 
-  const roundNumbers = lastRaces
-    .map((race) => Number(race.round))
-    .sort((a, b) => b - a);
+      return Number(b.round) - Number(a.round);
+    });
 
   return (
     <Table className="mt-3 font-mono">
@@ -25,8 +29,12 @@ export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {roundNumbers.map((round) => (
-          <LastRacesTableBody year={currentYear} round={round} key={round} />
+        {lastRacesInfo.map((race) => (
+          <LastRacesTableBody
+            year={race.year}
+            round={Number(race.round)}
+            key={`${race.year}${race.round}`}
+          />
         ))}
       </TableBody>
     </Table>

@@ -129,9 +129,16 @@ export async function getLastRaces(
 ): Promise<Race[]> {
   const currentYear = new Date(currentDate).getFullYear();
   const races = await getAllRaces(currentYear);
-  const lastRaces: Race[] = races
+  let lastRaces: Race[] = races
     .filter((race) => race.date < currentDate)
     .slice(-numRaces);
+
+  if (lastRaces.length < numRaces) {
+    const racesDeficit = numRaces - lastRaces.length;
+    let racesLastYear = await getAllRaces(currentYear - 1);
+    racesLastYear = racesLastYear.slice(-racesDeficit);
+    lastRaces = [...racesLastYear, ...lastRaces];
+  }
 
   return lastRaces;
 }
