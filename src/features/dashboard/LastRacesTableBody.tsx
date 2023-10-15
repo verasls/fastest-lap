@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { TableCell, TableRow } from "@/ui/Table";
-import Spinner from "@/ui/Spinner";
+import SpinnerMini from "@/ui/SpinnerMini";
 import Empty from "@/ui/Empty";
 import { useRaceResults } from "../results/useRaceResults";
 import { getCountryFlag } from "@/lib/helpers";
@@ -14,7 +14,18 @@ export default function LastRacesTableBody({
 }: LastRacesTableBodyProps) {
   const { results, isLoading } = useRaceResults({ year, round });
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <TableRow>
+        {Array(5)
+          .fill(1)
+          .map((_, i) => (
+            <TableCell key={i}>
+              <SpinnerMini />
+            </TableCell>
+          ))}
+      </TableRow>
+    );
   if (!results) return <Empty resourceName="race results" />;
 
   const raceDate = new Intl.DateTimeFormat("en", {
