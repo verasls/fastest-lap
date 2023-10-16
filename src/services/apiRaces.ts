@@ -21,7 +21,7 @@ export type Race = {
   sessions: RaceSessions;
 };
 
-async function getAllRaces(year: number): Promise<Race[]> {
+export async function getAllRaces(year: number): Promise<Race[]> {
   const response = await fetch(`${API_URL_ERGAST}/${year}.json`);
 
   if (!response.ok)

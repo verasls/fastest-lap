@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getWdcStandings } from "@/services/apiStandings";
+import {
+  getCumulativeWdcStandings,
+  getWdcStandings,
+} from "@/services/apiStandings";
 
 export function useWdcStandings({
   year,
@@ -18,4 +21,17 @@ export function useWdcStandings({
   });
 
   return { wdcResults, isLoading, error };
+}
+
+export function useCumulativeWdcStandings(year: number) {
+  const {
+    data: cumulativeWdcResults,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["cumulativeWdcResults", year],
+    queryFn: () => getCumulativeWdcStandings(year),
+  });
+
+  return { cumulativeWdcResults, isLoading, error };
 }

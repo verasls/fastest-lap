@@ -1,4 +1,6 @@
 import { API_URL_ERGAST } from "@/lib/constants";
+import { getAllRaces } from "./apiRaces";
+import { getCurrentDate } from "@/lib/helpers";
 
 export type Standings = {
   position: string;
@@ -15,6 +17,12 @@ export type StandingsInfo = {
   season: string;
   round: string;
   standings: Standings[];
+};
+
+export type CumulativeStandings = {
+  season: string;
+  round: string;
+  [key: string]: string | number;
 };
 
 export async function getWdcStandings({
@@ -76,4 +84,36 @@ export async function getWdcStandings({
   } as StandingsInfo;
 
   return standingsInfo;
+}
+
+export async function getCumulativeWdcStandings(
+  year: number
+): Promise<CumulativeStandings[]> {
+  const currentDate = getCurrentDate();
+  const allRaces = await getAllRaces(year);
+  const roundNums = allRaces
+    .filter((race) => race.date < currentDate)
+    .map((race) => Number(race.round));
+
+  const data = await Promise.all(
+    roundNums.map(async (round) => await getWdcStandings({ year, round }))
+  );
+
+  const cumulativeStandings = data.map((standingInfo) => {
+    const standings = standingInfo.standings.reduce<{ [key: string]: number }>(
+      (acc, standing) => {
+        acc[standing.driverCode] = Number(standing.points);
+        return acc;
+      },
+      {}
+    );
+
+    return {
+      season: standingInfo.season,
+      round: standingInfo.round,
+      ...standings,
+    };
+  }) as CumulativeStandings[];
+
+  return cumulativeStandings;
 }
