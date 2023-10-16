@@ -8,40 +8,44 @@ import {
   YAxis,
 } from "recharts";
 import Spinner from "@/ui/Spinner";
-import { useWdcStandings } from "../results/useWdcStandings";
+import { useCumulativeWdcStandings } from "../results/useWdcStandings";
+import { getCurrentYear } from "@/lib/helpers";
 
 export default function PlotWdcStandings() {
-  const { wdcResults, isLoading } = useWdcStandings({ year: 2023, round: 1 });
+  const currentYear = getCurrentYear();
+  const { cumulativeWdcResults, isLoading } =
+    useCumulativeWdcStandings(currentYear);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <div className="flex h-[400px] items-center justify-center">
+        <Spinner />
+      </div>
+    );
 
-  const fakeData = [
-    {
-      round: "",
-      VER: 0,
-      ALO: 0,
-    },
-    {
-      round: "Round 1",
-      VER: 25,
-      ALO: 18,
-    },
-    {
-      round: "Round 2",
-      VER: 50,
-      ALO: 33,
-    },
-  ];
+  const round0 = Object.keys(cumulativeWdcResults!.at(0)!).reduce<{
+    [key: string]: number | string;
+  }>((accumulator, key) => {
+    if (key === "season") accumulator[key] = String(currentYear);
+    if (key === "round") accumulator[key] = "";
+    if (key !== "season" && key !== "round") accumulator[key] = 0;
+
+    return accumulator;
+  }, {});
+
+  const plotData = [round0, ...cumulativeWdcResults!];
 
   return (
     <ResponsiveContainer height={400}>
-      <LineChart data={fakeData}>
+      <LineChart data={plotData}>
         <XAxis dataKey="round" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="VER" />
-        <Line type="monotone" dataKey="ALO" />
+        <Line dataKey="VER" />
+        <Line dataKey="ALO" />
+        <Line dataKey="PER" />
+        <Line dataKey="HAM" />
       </LineChart>
     </ResponsiveContainer>
   );
