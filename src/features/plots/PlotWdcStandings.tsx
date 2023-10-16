@@ -7,8 +7,14 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import Spinner from "@/ui/Spinner";
+import { useWdcStandings } from "../results/useWdcStandings";
 
 export default function PlotWdcStandings() {
+  const { wdcResults, isLoading } = useWdcStandings({ year: 2023, round: 1 });
+
+  if (isLoading) return <Spinner />;
+
   const fakeData = [
     {
       round: "",
