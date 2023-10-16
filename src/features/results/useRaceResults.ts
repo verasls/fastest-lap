@@ -9,13 +9,13 @@ export function useRaceResults({
   round: number;
 }) {
   const {
-    data: results,
+    data: raceResults,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["results", year, round],
+    queryKey: ["raceResults", year, round],
     queryFn: () => getRaceResults({ year, round }),
   });
 
-  return { results, isLoading, error };
+  return { raceResults, isLoading, error };
 }
