@@ -1,9 +1,10 @@
 import {
+  CartesianGrid,
+  Label,
   Legend,
   Line,
   LineChart,
   ResponsiveContainer,
-  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -23,6 +24,10 @@ export default function PlotWdcStandings() {
       </div>
     );
 
+  const drivers: string[] = Object.keys(cumulativeWdcResults!.at(-1)!).filter(
+    (key) => key !== "season" && key !== "round"
+  );
+
   const round0 = Object.keys(cumulativeWdcResults!.at(0)!).reduce<{
     [key: string]: number | string;
   }>((accumulator, key) => {
@@ -38,14 +43,22 @@ export default function PlotWdcStandings() {
   return (
     <ResponsiveContainer height={400}>
       <LineChart data={plotData}>
-        <XAxis dataKey="round" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line dataKey="VER" />
-        <Line dataKey="ALO" />
-        <Line dataKey="PER" />
-        <Line dataKey="HAM" />
+        <CartesianGrid strokeDasharray={4} />
+        <XAxis dataKey="round">
+          <Label>Round</Label>
+        </XAxis>
+        <YAxis
+          domain={[0, (dataMax: number) => Math.ceil(dataMax / 50) * 50]}
+        />
+        <Legend
+          layout="vertical"
+          align="right"
+          verticalAlign="top"
+          wrapperStyle={{ paddingLeft: "20px" }}
+        />
+        {drivers.map((driver) => (
+          <Line dataKey={driver} key={driver} />
+        ))}
       </LineChart>
     </ResponsiveContainer>
   );
