@@ -4,10 +4,12 @@ import {
   Line,
   LineChart,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
 import CustomLegend from "./CustomLegend";
+import CustomTooltip from "./CustomTooltip";
 import Spinner from "@/ui/Spinner";
 import { useCumulativeWdcStandings } from "../results/useWdcStandings";
 import { getCurrentYear } from "@/lib/helpers";
@@ -56,6 +58,7 @@ export default function PlotWdcStandings() {
           align="right"
           verticalAlign="top"
         />
+        <Tooltip content={<CustomTooltip />} />
         {drivers.map((driver) => (
           <Line
             dataKey={driver}
