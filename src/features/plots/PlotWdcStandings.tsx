@@ -8,6 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import CustomLegend from "./CustomLegend";
 import Spinner from "@/ui/Spinner";
 import { useCumulativeWdcStandings } from "../results/useWdcStandings";
 import { getCurrentYear } from "@/lib/helpers";
@@ -51,10 +52,10 @@ export default function PlotWdcStandings() {
           domain={[0, (dataMax: number) => Math.ceil(dataMax / 50) * 50]}
         />
         <Legend
+          content={<CustomLegend />}
           layout="vertical"
           align="right"
           verticalAlign="top"
-          wrapperStyle={{ paddingLeft: "20px" }}
         />
         {drivers.map((driver) => (
           <Line dataKey={driver} key={driver} />
