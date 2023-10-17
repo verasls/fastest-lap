@@ -8,8 +8,8 @@ export default function CustomLegend({ payload }: LegendProps) {
       {payload.map((entry, index) => (
         <li key={`item-${index}`} className="flex items-center gap-1">
           <div
-            className="w-3 border-2 border-b"
-            style={{ borderColor: entry.color }}
+            className="h-[2px] w-3"
+            style={{ backgroundColor: entry.color }}
           ></div>
           <p className="text-sm" style={{ color: entry.color }}>
             {entry.value}
