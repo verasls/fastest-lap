@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
-import PlotWdcStandings from "../plots/PlotWdcStandings";
+import PlotWdcPoints from "../plots/PlotWdcPoints";
 
-export default function WdcStandingsCard() {
+export default function WdcCard() {
   return (
     <Card className="col-span-full">
       <CardHeader>
@@ -10,7 +10,7 @@ export default function WdcStandingsCard() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <PlotWdcStandings />
+        <PlotWdcPoints />
       </CardContent>
     </Card>
   );

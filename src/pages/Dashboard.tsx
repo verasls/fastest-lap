@@ -1,7 +1,7 @@
 import Heading from "@/ui/Heading";
 import NextRaceCard from "@/features/dashboard/NextRaceCard";
 import LastRacesCard from "@/features/dashboard/LastRacesCard";
-import WdcStandingsCard from "@/features/dashboard/WdcStandingsCard";
+import WdcCard from "@/features/dashboard/WdcCard";
 
 export default function Dashboard() {
   return (
@@ -10,7 +10,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(535px,1fr))] gap-6">
         <NextRaceCard />
         <LastRacesCard />
-        <WdcStandingsCard />
+        <WdcCard />
       </div>
     </>
   );

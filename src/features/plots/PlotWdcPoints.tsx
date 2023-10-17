@@ -15,7 +15,7 @@ import { useCumulativeWdcStandings } from "../results/useWdcStandings";
 import { getCurrentYear } from "@/lib/helpers";
 import { wdcPlotColors } from "@/lib/colors";
 
-export default function PlotWdcStandings() {
+export default function PlotWdcPoints() {
   const currentYear = getCurrentYear();
   const { cumulativeWdcResults, isLoading } =
     useCumulativeWdcStandings(currentYear);
