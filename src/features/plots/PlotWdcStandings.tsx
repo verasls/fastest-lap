@@ -48,6 +48,7 @@ export default function PlotWdcStandings() {
         <XAxis dataKey="round" label={{ value: "Round", position: "bottom" }} />
         <YAxis
           domain={[0, (dataMax: number) => Math.ceil(dataMax / 50) * 50]}
+          label={{ value: "Points", dx: -10, angle: -90 }}
         />
         <Legend
           content={<CustomLegend />}
