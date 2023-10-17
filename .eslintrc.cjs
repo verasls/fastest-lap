@@ -36,6 +36,6 @@ module.exports = {
       "no-unused-vars": ["off"],
       "@typescript-eslint/no-unused-vars": ["warn"],
       "@typescript-eslint/no-explicit-any": "off",
-      "react/prop-types": [2, { "ignore": ["className"] }]
+      "react/prop-types": 0
     }
 }
