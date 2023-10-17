@@ -1,6 +1,5 @@
 import {
   CartesianGrid,
-  Label,
   Legend,
   Line,
   LineChart,
@@ -43,11 +42,9 @@ export default function PlotWdcStandings() {
 
   return (
     <ResponsiveContainer height={400}>
-      <LineChart data={plotData}>
+      <LineChart data={plotData} margin={{ bottom: 20 }}>
         <CartesianGrid strokeDasharray={4} />
-        <XAxis dataKey="round">
-          <Label>Round</Label>
-        </XAxis>
+        <XAxis dataKey="round" label={{ value: "Round", position: "bottom" }} />
         <YAxis
           domain={[0, (dataMax: number) => Math.ceil(dataMax / 50) * 50]}
         />
