@@ -4,7 +4,7 @@ import SpinnerMini from "@/ui/SpinnerMini";
 import Empty from "@/ui/Empty";
 import { useRaceResults } from "../results/useRaceResults";
 import { getCountryFlag } from "@/lib/helpers";
-import { constructorColors } from "@/lib/colors";
+import { tagColors } from "@/lib/colors";
 
 type LastRacesTableBodyProps = { year: number; round: number };
 
@@ -51,8 +51,8 @@ export default function LastRacesTableBody({
         <TableCell key={result.driverCode}>
           <span
             className={`rounded-md px-2 py-1 font-semibold ${
-              constructorColors.text[result.constructorName]
-            } ${constructorColors.background[result.constructorName]}`}
+              tagColors.text[result.constructorName]
+            } ${tagColors.background[result.constructorName]}`}
           >
             {result.driverCode}
           </span>

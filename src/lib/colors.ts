@@ -12,7 +12,20 @@ type ConstructorColorsType = {
   Williams: string;
 };
 
-export const constructorColors: {
+const constructorColors: ConstructorColorsType = {
+  "Alfa Romeo": "#B93C4E",
+  AlphaTauri: "#6A8EA7",
+  Alpine: "#4891CC",
+  "Aston Martin": "#4E8976",
+  Ferrari: "#E5373F",
+  Hass: "#B7BABD",
+  McLaren: "#E6863B",
+  Mercedes: "#86D1BF",
+  "Red Bull": "#4570C0",
+  Williams: "#62BBD9",
+};
+
+export const tagColors: {
   text: ConstructorColorsType;
   background: ConstructorColorsType;
 } = {
@@ -40,4 +53,29 @@ export const constructorColors: {
     "Red Bull": "bg-[#dae2f2]",
     Williams: "bg-[#e0f1f7]",
   },
+};
+
+export const wdcPlotColors: { [key: string]: string } = {
+  BOT: constructorColors["Alfa Romeo"],
+  ZHO: constructorColors["Alfa Romeo"],
+  DEV: constructorColors.AlphaTauri,
+  LAW: constructorColors.AlphaTauri,
+  RIC: constructorColors.AlphaTauri,
+  TSU: constructorColors.AlphaTauri,
+  GAS: constructorColors.Alpine,
+  OCO: constructorColors.Alpine,
+  ALO: constructorColors["Aston Martin"],
+  STR: constructorColors["Aston Martin"],
+  LEC: constructorColors.Ferrari,
+  SAI: constructorColors.Ferrari,
+  HUL: constructorColors.Hass,
+  MAG: constructorColors.Hass,
+  NOR: constructorColors.McLaren,
+  PIA: constructorColors.McLaren,
+  HAM: constructorColors.Mercedes,
+  RUS: constructorColors.Mercedes,
+  PER: constructorColors["Red Bull"],
+  VER: constructorColors["Red Bull"],
+  ALB: constructorColors.Williams,
+  SAR: constructorColors.Williams,
 };

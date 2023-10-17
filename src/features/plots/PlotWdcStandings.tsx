@@ -11,6 +11,7 @@ import CustomLegend from "./CustomLegend";
 import Spinner from "@/ui/Spinner";
 import { useCumulativeWdcStandings } from "../results/useWdcStandings";
 import { getCurrentYear } from "@/lib/helpers";
+import { wdcPlotColors } from "@/lib/colors";
 
 export default function PlotWdcStandings() {
   const currentYear = getCurrentYear();
@@ -55,7 +56,12 @@ export default function PlotWdcStandings() {
           verticalAlign="top"
         />
         {drivers.map((driver) => (
-          <Line dataKey={driver} key={driver} />
+          <Line
+            dataKey={driver}
+            key={driver}
+            stroke={wdcPlotColors[driver]}
+            strokeWidth={1.5}
+          />
         ))}
       </LineChart>
     </ResponsiveContainer>
