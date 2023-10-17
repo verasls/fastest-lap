@@ -44,7 +44,7 @@ export default function PlotWdcPoints() {
   const plotData = [round0, ...cumulativeWdcResults!];
 
   return (
-    <ResponsiveContainer height={400}>
+    <ResponsiveContainer height={400} className="mt-3">
       <LineChart data={plotData} margin={{ bottom: 20 }}>
         <CartesianGrid strokeDasharray={4} />
         <XAxis dataKey="round" label={{ value: "Round", position: "bottom" }} />
