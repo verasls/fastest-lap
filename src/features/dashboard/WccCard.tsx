@@ -1,28 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import Spinner from "@/ui/Spinner";
-import PlotWdcPoints from "../plots/PlotWdcPoints";
-import PlotWdcStandings from "../plots/PlotWdcStandings";
 import { getCurrentYear } from "@/lib/helpers";
-import { useCumulativeWdcStandings } from "../results/useWdcStandings";
-import { CumulativeStandings } from "@/services/apiStandings";
 
-export default function WdcCard() {
+export default function WccCard() {
   const currentYear = getCurrentYear();
-  const { cumulativeWdcResults, isLoading } =
-    useCumulativeWdcStandings(currentYear);
 
   return (
     <Card className="col-span-full">
       <CardHeader>
         <CardTitle className="text-xl">
-          {currentYear} World Drivers&apos; Championship
+          {currentYear} World Constructors&apos; Championship
         </CardTitle>
       </CardHeader>
       <CardContent>
         <p className="leading-8">
-          Take a look at the battle for positions on the drivers&apos;
-          championship!
+          Watch as each constructor strives for glory!
         </p>
 
         <Tabs defaultValue="points" className="mb-3">
@@ -41,30 +33,14 @@ export default function WdcCard() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="points">
-            {isLoading ? (
-              <div className="flex h-[400px] items-center justify-center">
-                <Spinner />
-              </div>
-            ) : (
-              <PlotWdcPoints
-                cumulativeWdcResults={
-                  cumulativeWdcResults as CumulativeStandings[]
-                }
-              />
-            )}
+            <div className="flex h-[400px] items-center justify-center">
+              Plot
+            </div>
           </TabsContent>
           <TabsContent value="standings">
-            {isLoading ? (
-              <div className="flex h-[400px] items-center justify-center">
-                <Spinner />{" "}
-              </div>
-            ) : (
-              <PlotWdcStandings
-                cumulativeWdcResults={
-                  cumulativeWdcResults as CumulativeStandings[]
-                }
-              />
-            )}
+            <div className="flex h-[400px] items-center justify-center">
+              Plot
+            </div>
           </TabsContent>
         </Tabs>
       </CardContent>
