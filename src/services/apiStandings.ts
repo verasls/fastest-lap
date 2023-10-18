@@ -2,7 +2,7 @@ import { API_URL_ERGAST } from "@/lib/constants";
 import { getAllRaces } from "./apiRaces";
 import { getCurrentDate } from "@/lib/helpers";
 
-export type Standings = {
+export type DriverStandings = {
   position: string;
   points: string;
   driverNumber: string;
@@ -13,10 +13,10 @@ export type Standings = {
   constructorName: string;
 };
 
-export type StandingsInfo = {
+export type DriverStandingsInfo = {
   season: string;
   round: string;
-  standings: Standings[];
+  standings: DriverStandings[];
 };
 
 export type CumulativeStandings = {
@@ -31,7 +31,7 @@ export async function getWdcStandings({
 }: {
   year: number;
   round: number;
-}): Promise<StandingsInfo> {
+}): Promise<DriverStandingsInfo> {
   const response = await fetch(
     `${API_URL_ERGAST}/${year}/${round}/driverStandings.json`
   );
@@ -75,13 +75,13 @@ export async function getWdcStandings({
     driverLastName: standing.Driver.familyName,
     driverNationality: standing.Driver.nationality,
     constructorName: standing.Constructors.at(0)!.name,
-  })) as Standings[];
+  })) as DriverStandings[];
 
   const standingsInfo = {
     season: data.MRData.StandingsTable.StandingsLists.at(0)!.season,
     round: data.MRData.StandingsTable.StandingsLists.at(0)!.round,
     standings,
-  } as StandingsInfo;
+  } as DriverStandingsInfo;
 
   return standingsInfo;
 }
@@ -104,6 +104,102 @@ export async function getCumulativeWdcStandings(
       [key: string]: { points: number; position: number };
     }>((acc, standing) => {
       acc[standing.driverCode] = {
+        points: Number(standing.points),
+        position: Number(standing.position),
+      };
+      return acc;
+    }, {});
+
+    return {
+      season: standingInfo.season,
+      round: standingInfo.round,
+      ...standings,
+    };
+  }) as CumulativeStandings[];
+
+  return cumulativeStandings;
+}
+
+export type ConstructorStandings = {
+  position: string;
+  points: string;
+  driverNationality: string;
+  constructorName: string;
+};
+
+export type ConstructorStandingsInfo = {
+  season: string;
+  round: string;
+  standings: ConstructorStandings[];
+};
+
+export async function getWccStandings({
+  year,
+  round,
+}: {
+  year: number;
+  round: number;
+}): Promise<ConstructorStandingsInfo> {
+  const response = await fetch(
+    `${API_URL_ERGAST}/${year}/${round}/constructorStandings.json`
+  );
+
+  if (!response.ok)
+    throw new Error("Something went wrong with fetching WCC Standings data");
+
+  const data: {
+    MRData: {
+      StandingsTable: {
+        StandingsLists: Array<{
+          season: string;
+          round: string;
+          ConstructorStandings: Array<{
+            position: string;
+            points: string;
+            Constructor: {
+              name: string;
+            };
+          }>;
+        }>;
+      };
+    };
+  } = await response.json();
+
+  const standings = data.MRData.StandingsTable.StandingsLists.at(
+    0
+  )!.ConstructorStandings.map((standing) => ({
+    position: standing.position,
+    points: standing.points,
+    constructorName: standing.Constructor.name,
+  })) as ConstructorStandings[];
+
+  const standingsInfo = {
+    season: data.MRData.StandingsTable.StandingsLists.at(0)!.season,
+    round: data.MRData.StandingsTable.StandingsLists.at(0)!.round,
+    standings,
+  } as ConstructorStandingsInfo;
+
+  return standingsInfo;
+}
+
+export async function getCumulativeWccStandings(
+  year: number
+): Promise<CumulativeStandings[]> {
+  const currentDate = getCurrentDate();
+  const allRaces = await getAllRaces(year);
+  const roundNums = allRaces
+    .filter((race) => race.date < currentDate)
+    .map((race) => Number(race.round));
+
+  const data = await Promise.all(
+    roundNums.map(async (round) => await getWccStandings({ year, round }))
+  );
+
+  const cumulativeStandings = data.map((standingInfo) => {
+    const standings = standingInfo.standings.reduce<{
+      [key: string]: { points: number; position: number };
+    }>((acc, standing) => {
+      acc[standing.constructorName] = {
         points: Number(standing.points),
         position: Number(standing.position),
       };
