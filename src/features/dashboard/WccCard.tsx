@@ -1,9 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import Spinner from "@/ui/Spinner";
 import { getCurrentYear } from "@/lib/helpers";
+import { useCumulativeWccStandings } from "../results/useWccStandings";
+import { CumulativeStandings } from "@/services/apiStandings";
+import PlotWccPoints from "../plots/PlotWccPoints";
+import PlotWccStandings from "../plots/PlotWccStandings";
 
 export default function WccCard() {
   const currentYear = getCurrentYear();
+  const { cumulativeWccResults, isLoading } =
+    useCumulativeWccStandings(currentYear);
 
   return (
     <Card className="col-span-full">
@@ -33,14 +40,30 @@ export default function WccCard() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="points">
-            <div className="flex h-[400px] items-center justify-center">
-              Plot
-            </div>
+            {isLoading ? (
+              <div className="flex h-[400px] items-center justify-center">
+                <Spinner />
+              </div>
+            ) : (
+              <PlotWccPoints
+                cumulativeWccResults={
+                  cumulativeWccResults as CumulativeStandings[]
+                }
+              />
+            )}
           </TabsContent>
           <TabsContent value="standings">
-            <div className="flex h-[400px] items-center justify-center">
-              Plot
-            </div>
+            {isLoading ? (
+              <div className="flex h-[400px] items-center justify-center">
+                <Spinner />{" "}
+              </div>
+            ) : (
+              <PlotWccStandings
+                cumulativeWccResults={
+                  cumulativeWccResults as CumulativeStandings[]
+                }
+              />
+            )}
           </TabsContent>
         </Tabs>
       </CardContent>

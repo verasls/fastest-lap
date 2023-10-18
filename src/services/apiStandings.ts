@@ -170,7 +170,7 @@ export async function getWccStandings({
   )!.ConstructorStandings.map((standing) => ({
     position: standing.position,
     points: standing.points,
-    constructorName: standing.Constructor.name,
+    constructorName: standing.Constructor.name.replace(" F1 Team", ""),
   })) as ConstructorStandings[];
 
   const standingsInfo = {
