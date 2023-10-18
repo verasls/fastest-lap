@@ -41,7 +41,21 @@ export default function PlotWdcPoints() {
     return accumulator;
   }, {});
 
-  const plotData = [round0, ...cumulativeWdcResults!];
+  const cumulativeWdcPoints = cumulativeWdcResults!.map((item) => {
+    return Object.entries(item).reduce(
+      (acc, [key, value]) => {
+        if (key === "round" || key === "season") {
+          acc[key] = value as string;
+        } else if (typeof value === "object" && value !== null) {
+          acc[key] = value.points;
+        }
+        return acc;
+      },
+      {} as { round: string; season: string; [key: string]: number | string }
+    );
+  });
+
+  const plotData = [round0, ...cumulativeWdcPoints];
 
   return (
     <ResponsiveContainer height={400} className="mt-3">

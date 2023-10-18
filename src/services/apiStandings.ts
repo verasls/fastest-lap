@@ -22,7 +22,7 @@ export type StandingsInfo = {
 export type CumulativeStandings = {
   season: string;
   round: string;
-  [key: string]: string | number;
+  [key: string]: string | { points: number; position: number };
 };
 
 export async function getWdcStandings({
@@ -100,13 +100,15 @@ export async function getCumulativeWdcStandings(
   );
 
   const cumulativeStandings = data.map((standingInfo) => {
-    const standings = standingInfo.standings.reduce<{ [key: string]: number }>(
-      (acc, standing) => {
-        acc[standing.driverCode] = Number(standing.points);
-        return acc;
-      },
-      {}
-    );
+    const standings = standingInfo.standings.reduce<{
+      [key: string]: { points: number; position: number };
+    }>((acc, standing) => {
+      acc[standing.driverCode] = {
+        points: Number(standing.points),
+        position: Number(standing.position),
+      };
+      return acc;
+    }, {});
 
     return {
       season: standingInfo.season,
