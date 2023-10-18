@@ -10,23 +10,16 @@ import {
 } from "recharts";
 import CustomLegend from "./CustomLegend";
 import CustomTooltip from "./CustomTooltip";
-import Spinner from "@/ui/Spinner";
-import { useCumulativeWdcStandings } from "../results/useWdcStandings";
-import { getCurrentYear } from "@/lib/helpers";
 import { wdcPlotColors } from "@/lib/colors";
+import { CumulativeStandings } from "@/services/apiStandings";
+import { getCurrentYear } from "@/lib/helpers";
 
-export default function PlotWdcPoints() {
+export default function PlotWdcPoints({
+  cumulativeWdcResults,
+}: {
+  cumulativeWdcResults: CumulativeStandings[];
+}) {
   const currentYear = getCurrentYear();
-  const { cumulativeWdcResults, isLoading } =
-    useCumulativeWdcStandings(currentYear);
-
-  if (isLoading)
-    return (
-      <div className="flex h-[400px] items-center justify-center">
-        <Spinner />
-      </div>
-    );
-
   const drivers: string[] = Object.keys(cumulativeWdcResults!.at(-1)!).filter(
     (key) => key !== "season" && key !== "round"
   );
@@ -72,7 +65,7 @@ export default function PlotWdcPoints() {
           align="right"
           verticalAlign="top"
         />
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip content={<CustomTooltip sort="descending" />} />
         {drivers.map((driver) => (
           <Line
             dataKey={driver}

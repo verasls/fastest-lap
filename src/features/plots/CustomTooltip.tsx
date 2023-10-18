@@ -1,12 +1,32 @@
 import { TooltipProps } from "recharts";
+import { Payload } from "recharts/types/component/DefaultTooltipContent";
+
+type RechartTooltipProps = TooltipProps<any, any>;
+
+type RechartsInjectedProps = {
+  active?: RechartTooltipProps["active"];
+  payload?: RechartTooltipProps["payload"];
+  label?: RechartTooltipProps["label"];
+};
+
+type ManualProps = {
+  sort?: "ascending" | "descending";
+};
+
+type CustomTooltipProps = RechartsInjectedProps & ManualProps;
 
 export default function CustomTooltip({
   active,
   payload,
   label,
-}: TooltipProps<any, any>) {
+  sort = "ascending",
+}: CustomTooltipProps) {
   if (active && payload && payload.length) {
-    const sorted = payload.sort((a, b) => b.value - a.value);
+    let sorted: Payload<any, any>[] = [...payload];
+    if (sort === "ascending")
+      sorted = payload.sort((a, b) => a.value - b.value);
+    if (sort === "descending")
+      sorted = payload.sort((a, b) => b.value - a.value);
 
     if (!sorted.at(0)?.payload.round) return null;
 
