@@ -9,7 +9,17 @@ export default function LastRacesCard() {
   const currentDate = getCurrentDate();
   const { lastRaces, isLoading } = useLastRaces(currentDate);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">Getting data...</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Spinner />
+        </CardContent>
+      </Card>
+    );
   if (!lastRaces) return <Empty resourceName="last races" />;
 
   const earliestDateString = lastRaces.reduce((prev, current) =>

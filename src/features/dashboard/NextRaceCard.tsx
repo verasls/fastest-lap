@@ -10,7 +10,18 @@ export default function NextRaceCard() {
   const currentDate = getCurrentDate();
   const { nextRace, isLoading } = useNextRace(currentDate);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">Getting data...</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Spinner />
+        </CardContent>
+      </Card>
+    );
+
   if (!nextRace) return <Empty resourceName="next race" />;
   if (typeof nextRace === "string")
     return (
