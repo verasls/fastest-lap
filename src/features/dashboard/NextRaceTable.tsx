@@ -65,7 +65,6 @@ export default function NextRaceTable() {
       };
     }
   );
-  console.log(sessionsInfo);
 
   const firstTrueIndex = sessionsInfo.findIndex((session) => session.isNext);
   sessionsInfo = sessionsInfo.map((session, index) => {
