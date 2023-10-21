@@ -4,7 +4,7 @@ export default function Drivers() {
   return (
     <>
       <Heading type="h1">Drivers</Heading>
-      <p>Drivers content</p>
+      <p>Soon...</p>
     </>
   );
 }

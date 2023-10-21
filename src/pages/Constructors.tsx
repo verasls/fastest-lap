@@ -4,7 +4,7 @@ export default function Constructors() {
   return (
     <>
       <Heading type="h1">Constructors</Heading>
-      <p>Constructors content</p>
+      <p>Soon...</p>
     </>
   );
 }
