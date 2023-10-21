@@ -105,7 +105,10 @@ export default function NextRaceTable() {
                   sessionDate={session.sessionDate}
                   sessionTime={session.sessionTime}
                 />
-              ) : session.hasFinished ? (
+              ) : session.hasFinished &&
+                (session.sessionName === "Qualifying" ||
+                  session.sessionName === "Sprint" ||
+                  session.sessionName === "Race") ? (
                 <ResultsButton />
               ) : (
                 ""
