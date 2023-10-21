@@ -125,6 +125,17 @@ export function sessionHasFinished({
   return now > finishTime;
 }
 
+export function sessionIsOngoing({
+  utcDateString,
+  utcTimeString,
+}: UtcDateTimeString): boolean {
+  const startTime = new Date(`${utcDateString}T${utcTimeString}`);
+  const finishTime = new Date(`${utcDateString}T${utcTimeString}`);
+  finishTime.setHours(finishTime.getHours() + 1);
+  const now = new Date();
+  return now > startTime && now < finishTime;
+}
+
 export function getTimeRemainingInSeconds({
   targetDate,
   targetTime,

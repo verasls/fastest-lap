@@ -18,6 +18,7 @@ import {
   getTrackDateTime,
   isWithin24Hours,
   sessionHasFinished,
+  sessionIsOngoing,
 } from "@/lib/helpers";
 
 type SessionsInfo = Session & {
@@ -25,6 +26,7 @@ type SessionsInfo = Session & {
   localDateTime: string;
   isNext: boolean;
   hasFinished: boolean;
+  isOngoing: boolean;
 };
 
 export default function NextRaceTable() {
@@ -43,26 +45,27 @@ export default function NextRaceTable() {
     coordinates.longitude
   );
 
-  let sessionsInfo: SessionsInfo[] = sessions.map((session) => ({
-    ...session,
-    trackDateTime: getTrackDateTime({
-      utcDateString: session.sessionDate,
-      utcTimeString: session.sessionTime,
-      timeZone: timeZone,
-    }),
-    localDateTime: getLocalDateTime({
-      utcDateString: session.sessionDate,
-      utcTimeString: session.sessionTime,
-    }),
-    isNext: isWithin24Hours({
-      utcDateString: session.sessionDate,
-      utcTimeString: session.sessionTime,
-    }),
-    hasFinished: sessionHasFinished({
-      utcDateString: session.sessionDate,
-      utcTimeString: session.sessionTime,
-    }),
-  }));
+  let sessionsInfo: SessionsInfo[] = sessions.map(
+    ({ sessionDate, sessionTime, ...rest }) => {
+      const params = {
+        utcDateString: sessionDate,
+        utcTimeString: sessionTime,
+        timeZone: timeZone,
+      };
+
+      return {
+        ...rest,
+        sessionDate,
+        sessionTime,
+        trackDateTime: getTrackDateTime(params),
+        localDateTime: getLocalDateTime(params),
+        isNext: isWithin24Hours(params),
+        hasFinished: sessionHasFinished(params),
+        isOngoing: sessionIsOngoing(params),
+      };
+    }
+  );
+  console.log(sessionsInfo);
 
   const firstTrueIndex = sessionsInfo.findIndex((session) => session.isNext);
   sessionsInfo = sessionsInfo.map((session, index) => {
@@ -110,6 +113,10 @@ export default function NextRaceTable() {
                   session.sessionName === "Sprint" ||
                   session.sessionName === "Race") ? (
                 <ResultsButton />
+              ) : session.isOngoing ? (
+                <div className="inline-flex h-8 w-[13ch] select-none items-center justify-center rounded-md bg-red-600 px-3 text-xs text-neutral-50 shadow">
+                  <span>Ongoing</span>
+                </div>
               ) : (
                 ""
               )}
