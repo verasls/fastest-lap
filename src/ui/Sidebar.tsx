@@ -3,7 +3,7 @@ import MainNav from "./MainNav";
 
 export default function Sidebar() {
   return (
-    <aside className="flex flex-col gap-9 border-r border-neutral-100 px-6 py-8">
+    <aside className="pointer-events-none invisible hidden lg:pointer-events-auto lg:visible  lg:flex lg:flex-col lg:gap-9 lg:border-r lg:border-neutral-100 lg:px-6 lg:py-8">
       <Logo />
       <MainNav />
     </aside>

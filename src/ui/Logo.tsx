@@ -4,10 +4,10 @@ export default function Logo() {
   return (
     <Link
       to="/"
-      className="flex flex-col items-center rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950"
+      className="flex items-center gap-1 rounded-md pl-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 lg:flex lg:flex-col lg:items-center"
     >
-      <img src="/logo.png" className="h-24 w-auto" />
-      <h1 className="font-logo text-2xl">Fastest Lap</h1>
+      <img src="/logo.png" className="h-16 w-auto lg:h-24 lg:w-24" />
+      <h1 className="font-logo text-3xl lg:text-2xl">Fastest Lap</h1>
     </Link>
   );
 }

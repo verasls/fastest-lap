@@ -7,6 +7,10 @@
 
 @layer base {
   html {
-    @apply text-neutral-800;
+    @apply overflow-x-hidden text-neutral-800;
+  }
+
+  body {
+    @apply overflow-x-hidden;
   }
 }
