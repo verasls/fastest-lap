@@ -13,7 +13,7 @@ export default function MobileHeader({ open, onClick }: MobileHeaderProps) {
       <Logo />
       <button className="z-50" onClick={onClick}>
         {open ? (
-          <MdOutlineClose className="pr-2 text-4xl md:text-5xl" />
+          <MdOutlineClose className="pr-2 text-4xl sm:text-5xl" />
         ) : (
           <MdMenu className="pr-2 text-4xl sm:text-5xl" />
         )}

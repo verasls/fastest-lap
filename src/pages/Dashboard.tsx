@@ -7,7 +7,9 @@ import WccCard from "@/features/dashboard/WccCard";
 export default function Dashboard() {
   return (
     <>
-      <Heading type="h1">Dashboard</Heading>
+      <Heading type="h1" className="pl-2">
+        Dashboard
+      </Heading>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 sm:grid-cols-[repeat(auto-fit,minmax(535px,1fr))]">
         <NextRaceCard />
         <LastRacesCard />
