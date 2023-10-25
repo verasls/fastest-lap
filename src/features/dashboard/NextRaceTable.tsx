@@ -86,10 +86,8 @@ export default function NextRaceTable() {
       <TableBody>
         {sessionsInfo.map((session) => (
           <TableRow key={session.sessionName}>
-            <TableCell className="min-w-[145px]">
-              {session.sessionName}
-            </TableCell>
-            <TableCell className="min-w-[120px]">
+            <TableCell className="">{session.sessionName}</TableCell>
+            <TableCell className="">
               {isLoading ? (
                 <SpinnerMini />
               ) : !session.trackDateTime || error ? (
@@ -98,9 +96,7 @@ export default function NextRaceTable() {
                 session.trackDateTime
               )}
             </TableCell>
-            <TableCell className="min-w-[120px]">
-              {session.localDateTime}
-            </TableCell>
+            <TableCell className="">{session.localDateTime}</TableCell>
             <TableCell className="h-14 text-center">
               {session.isNext ? (
                 <Countdown

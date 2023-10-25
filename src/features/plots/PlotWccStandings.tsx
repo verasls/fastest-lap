@@ -12,12 +12,15 @@ import CustomLegend from "./CustomLegend";
 import CustomTooltip from "./CustomTooltip";
 import { constructorColors } from "@/lib/colors";
 import { CumulativeStandings } from "@/services/apiStandings";
+import { useWindowWidth } from "@/hooks/useWindowWidth";
 
 export default function PlotWccStandings({
   cumulativeWccResults,
 }: {
   cumulativeWccResults: CumulativeStandings[];
 }) {
+  const windowWidth = useWindowWidth();
+
   const constructors: string[] = Object.keys(
     cumulativeWccResults!.at(-1)!
   ).filter((key) => key !== "season" && key !== "round");
@@ -44,8 +47,11 @@ export default function PlotWccStandings({
   );
 
   return (
-    <ResponsiveContainer height={400} className="mt-3">
-      <LineChart data={plotData} margin={{ bottom: 20 }}>
+    <ResponsiveContainer
+      height={windowWidth > 500 ? 400 : 500}
+      className="mt-3"
+    >
+      <LineChart data={plotData} margin={{ bottom: 20, right: 20 }}>
         <CartesianGrid strokeDasharray={4} />
         <XAxis dataKey="round" label={{ value: "Round", position: "bottom" }} />
         <YAxis
@@ -53,12 +59,16 @@ export default function PlotWccStandings({
           ticks={tickMarks}
           label={{ value: "Standings", dx: -10, angle: -90 }}
         />
-        <Legend
-          content={<CustomLegend />}
-          layout="vertical"
-          align="right"
-          verticalAlign="top"
-        />
+        {windowWidth > 500 ? (
+          <Legend
+            content={<CustomLegend />}
+            layout="vertical"
+            align="right"
+            verticalAlign="top"
+          />
+        ) : (
+          <Legend content={<CustomLegend layout="horizontal" />} />
+        )}
         <Tooltip content={<CustomTooltip sort="ascending" />} />
         {constructors.map((constructor) => (
           <Line

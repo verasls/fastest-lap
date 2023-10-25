@@ -14,7 +14,7 @@ export default function AppLayout() {
     <div className="grid lg:h-screen lg:grid-cols-[14rem_1fr]">
       <Sidebar />
       <MobileHeader open={openNav} onClick={handleClick} />
-      <main className="overflow-scroll bg-neutral-50 px-12 py-10">
+      <main className="overflow-scroll bg-neutral-50 px-2 py-10 pt-20 md:px-12 lg:pt-10">
         <div className="mx-auto my-0 flex min-h-screen max-w-7xl flex-col gap-8">
           <Outlet />
         </div>

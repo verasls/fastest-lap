@@ -14,7 +14,7 @@ export default function NextRaceCard() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl">Getting data...</CardTitle>
+          <CardTitle>Getting data...</CardTitle>
         </CardHeader>
         <CardContent>
           <Spinner />
@@ -27,7 +27,7 @@ export default function NextRaceCard() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl">The season is over</CardTitle>
+          <CardTitle>The season is over</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-lg">
@@ -45,7 +45,7 @@ export default function NextRaceCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl">
+        <CardTitle>
           {currentDate >= nextRace.sessions.at(0)!.sessionDate &&
           currentDate <= nextRace.sessions.at(-1)!.sessionDate
             ? "It'already a race weekend"

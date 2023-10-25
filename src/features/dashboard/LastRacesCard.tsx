@@ -13,7 +13,7 @@ export default function LastRacesCard() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-xl">Getting data...</CardTitle>
+          <CardTitle>Getting data...</CardTitle>
         </CardHeader>
         <CardContent>
           <Spinner />
@@ -34,14 +34,12 @@ export default function LastRacesCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl">Previous results</CardTitle>
+        <CardTitle>Previous results</CardTitle>
       </CardHeader>
       <CardContent>
         <div>
-          <p className="leading-8">
-            A quick recap of the last five race podiums
-          </p>
-          <p>Showing results since {earliestDate}</p>
+          <p className="mb-2">A quick recap of the last five race podiums</p>
+          <p className="mb-2">Showing results since {earliestDate}</p>
         </div>
         <LastRacesTable lastRaces={lastRaces} />
       </CardContent>

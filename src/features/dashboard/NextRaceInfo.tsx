@@ -22,9 +22,14 @@ export default function NextRaceInfo() {
       <div className="flex items-center gap-2">
         <MdOutlineLocationOn className="text-2xl text-red-600" />
         <p>
-          {nextRaceData.circuitName} - {nextRaceData.country}
+          {nextRaceData.circuitName} -{" "}
+          <span className="whitespace-nowrap">
+            {nextRaceData.country}
+            <span className="relative top-[-1.6px] pl-1 align-middle text-2xl">
+              {countryFlag}
+            </span>
+          </span>{" "}
         </p>
-        <span className="pl-1 text-2xl">{countryFlag}</span>
       </div>
     </div>
   );

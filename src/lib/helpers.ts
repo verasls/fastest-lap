@@ -35,6 +35,7 @@ function formatDateTime(dateTime: Date): string {
   const weekday = dateTime.toLocaleDateString("en", { weekday: "short" });
   const time = dateTime.toLocaleTimeString("en", {
     hour: "2-digit",
+    hour12: false,
     minute: "2-digit",
   });
 

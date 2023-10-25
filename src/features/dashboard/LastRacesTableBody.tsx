@@ -28,10 +28,11 @@ export default function LastRacesTableBody({
     );
   if (!raceResults) return <Empty resourceName="race results" />;
 
+  const season = new Date(raceResults.raceInfo.date).getFullYear();
+
   const raceDate = new Intl.DateTimeFormat("en", {
     day: "2-digit",
     month: "short",
-    year: "2-digit",
   }).format(new Date(raceResults.raceInfo.date));
 
   return (
@@ -45,11 +46,16 @@ export default function LastRacesTableBody({
             {getCountryFlag(raceResults.raceInfo.country)}
           </span>{" "}
           <span className="decoration-neutral-800 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-2">
-            {raceResults.raceInfo.raceName}
+            {`${season} ${raceResults.raceInfo.raceName.replace(
+              "Grand Prix",
+              "GP"
+            )}`}
           </span>
         </Link>
       </TableCell>
-      <TableCell>{raceDate}</TableCell>
+      <TableCell className="whitespace-nowrap max-[470px]:hidden">
+        {raceDate}
+      </TableCell>
       {raceResults.racePositions.slice(0, 3).map((result) => (
         <TableCell key={result.driverCode}>
           <span

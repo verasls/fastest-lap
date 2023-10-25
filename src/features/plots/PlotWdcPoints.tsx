@@ -13,12 +13,15 @@ import CustomTooltip from "./CustomTooltip";
 import { wdcPlotColors } from "@/lib/colors";
 import { CumulativeStandings } from "@/services/apiStandings";
 import { getCurrentYear } from "@/lib/helpers";
+import {useWindowWidth} from "@/hooks/useWindowWidth";
 
 export default function PlotWdcPoints({
   cumulativeWdcResults,
 }: {
   cumulativeWdcResults: CumulativeStandings[];
 }) {
+  const windowWidth = useWindowWidth()
+
   const currentYear = getCurrentYear();
   const drivers: string[] = Object.keys(cumulativeWdcResults!.at(-1)!).filter(
     (key) => key !== "season" && key !== "round"
@@ -51,20 +54,27 @@ export default function PlotWdcPoints({
   const plotData = [round0, ...cumulativeWdcPoints];
 
   return (
-    <ResponsiveContainer height={400} className="mt-3">
-      <LineChart data={plotData} margin={{ bottom: 20 }}>
+    <ResponsiveContainer
+      height={windowWidth > 500 ? 400 : 500}
+      className="mt-3"
+    >
+      <LineChart data={plotData} margin={{ bottom: 20, right: 20 }}>
         <CartesianGrid strokeDasharray={4} />
         <XAxis dataKey="round" label={{ value: "Round", position: "bottom" }} />
         <YAxis
           domain={[0, (dataMax: number) => Math.ceil(dataMax / 50) * 50]}
-          label={{ value: "Points", dx: -10, angle: -90 }}
+          label={{ value: "Points", dx: -20, angle: -90 }}
         />
-        <Legend
-          content={<CustomLegend />}
-          layout="vertical"
-          align="right"
-          verticalAlign="top"
-        />
+        {windowWidth > 500 ? (
+          <Legend
+            content={<CustomLegend />}
+            layout="vertical"
+            align="right"
+            verticalAlign="top"
+          />
+        ) : (
+          <Legend content={<CustomLegend layout="horizontal" />} />
+        )}
         <Tooltip content={<CustomTooltip sort="descending" />} />
         {drivers.map((driver) => (
           <Line

@@ -22,7 +22,7 @@ export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
       <TableHeader>
         <TableRow>
           <TableHead>Race</TableHead>
-          <TableHead>Date</TableHead>
+          <TableHead className="max-[470px]:hidden">Date</TableHead>
           <TableHead className="text-center">1st</TableHead>
           <TableHead className="text-center">2nd</TableHead>
           <TableHead className="text-center">3rd</TableHead>
