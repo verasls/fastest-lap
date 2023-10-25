@@ -12,16 +12,16 @@ export default function NextRaceInfo() {
   const countryFlag = getCountryFlag(nextRaceData.country);
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <MdTag className="text-2xl text-red-600" />
+        <MdTag className="h-6 w-6 min-w-[24px] text-red-600" />
         <p>
           Round {nextRaceData.round} - {nextRaceData.raceName}
         </p>
       </div>
       <div className="flex items-center gap-2">
-        <MdOutlineLocationOn className="text-2xl text-red-600" />
-        <p>
+        <MdOutlineLocationOn className="h-6 w-6 min-w-[24px] leading-3 text-red-600" />
+        <p className="leading-3">
           {nextRaceData.circuitName} -{" "}
           <span className="whitespace-nowrap">
             {nextRaceData.country}
