@@ -30,10 +30,10 @@ export const tagColors: {
   background: ConstructorColorsType;
 } = {
   text: {
-    "Alfa Romeo": "text-[#B93C4E]",
-    AlphaTauri: "text-[#6A8EA7]",
-    Alpine: "text-[#4891CC]",
-    "Aston Martin": "text-[#4E8976]",
+    "Alfa Romeo": "text-[#822A37]",
+    AlphaTauri: "text-[#4A6375]",
+    Alpine: "text-[#32668F]",
+    "Aston Martin": "text-[#376053]",
     Ferrari: "text-[#E5373F]",
     Haas: "text-[#B7BABD]",
     McLaren: "text-[#E6863B]",
@@ -41,17 +41,18 @@ export const tagColors: {
     "Red Bull": "text-[#4570C0]",
     Williams: "text-[#62BBD9]",
   },
+  // Background colors are the constructorColors with 90% more white
   background: {
-    "Alfa Romeo": "bg-[#f1d8dc]",
-    AlphaTauri: "bg-[#e1e8ed]",
-    Alpine: "bg-[#dae9f5]",
-    "Aston Martin": "bg-[#dce7e4]",
-    Ferrari: "bg-[#fad7d9]",
-    Haas: "bg-[#f1f1f2]",
-    McLaren: "bg-[#fae7d8]",
-    Mercedes: "bg-[#e7f6f2]",
-    "Red Bull": "bg-[#dae2f2]",
-    Williams: "bg-[#e0f1f7]",
+    "Alfa Romeo": "bg-[#F8ECED]",
+    AlphaTauri: "bg-[#EDEFF1]",
+    Alpine: "bg-[#ebf0F4]",
+    "Aston Martin": "bg-[#EBEFEE]",
+    Ferrari: "bg-[#FCEBEC]",
+    Haas: "bg-[#f8f8F8]",
+    McLaren: "bg-[#FDF3EB]",
+    Mercedes: "bg-[#F3FAF9]",
+    "Red Bull": "bg-[#ECF1F9]",
+    Williams: "bg-[#EFF8FB]",
   },
 };
 
