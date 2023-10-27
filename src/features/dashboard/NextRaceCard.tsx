@@ -48,7 +48,7 @@ export default function NextRaceCard() {
         <CardTitle>
           {currentDate >= nextRace.sessions.at(0)!.sessionDate &&
           currentDate <= nextRace.sessions.at(-1)!.sessionDate
-            ? "It'already a race weekend"
+            ? "It'already a race weekend!"
             : `Next race weekend in ${numDays} day${numDays > 1 ? "s" : ""}`}
         </CardTitle>
       </CardHeader>
