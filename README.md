@@ -4,7 +4,7 @@ This is a web application built to allow you to explore Formula 1 data (results,
 
 It was developed using React with Typescript and styled using Tailwind CSS. All Formula 1 related data comes from the [Ergast API](http://ergast.com/mrd/)
 
-You can see this live at [fastestlap]()
+You can see this live at [fastestlap](https://fastest-lap.vercel.app/)
 
 To run the app localy:
 
