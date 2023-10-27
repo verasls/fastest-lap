@@ -2,9 +2,20 @@
 
 This is a web application built to allow you to explore Formula 1 data (results, schedule, circuits...)
 
-It was developed using React with Typescript and styled using Tailwind CSS. All Formula 1 related data comes from the [Ergast API](http://ergast.com/mrd/)
+The tech stack used in this project was:
 
-You can see this live at [fastestlap](https://fastest-lap.vercel.app/)
+- Frontend: [React](https://react.dev/) using [TypeScript](https://www.typescriptlang.org/)
+- Styling: [Tailwind CSS](https://tailwindcss.com/)
+- State management: async state management was done using [TanStack Query](https://tanstack.com/query/latest). UI state was rarely needed and was managed with the simple useState hook.
+
+And the data sources are:
+
+- All Formula 1 related data comes from the [Ergast API](http://ergast.com/mrd/)
+- Timezone data was get from [TimeZoneDB](https://timezonedb.com/)
+
+---
+
+You can see this live at [fastest-lap.vercel.app](https://fastest-lap.vercel.app/)
 
 To run the app localy:
 
