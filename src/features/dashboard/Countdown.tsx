@@ -41,7 +41,7 @@ export default function Countdown({
   }, []);
 
   return (
-    <div className="inline-flex h-8 w-[13ch] select-none items-center justify-center rounded-md bg-red-600 px-3 text-xs text-neutral-50 shadow">
+    <div className="inline-flex h-8 w-[12ch] select-none items-center justify-center rounded-md bg-red-600 px-2 text-xs text-neutral-50 shadow">
       {countdownTime === "00:00" ? (
         <span>Ongoing</span>
       ) : (

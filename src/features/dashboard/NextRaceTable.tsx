@@ -80,7 +80,13 @@ export default function NextRaceTable() {
           <TableHead>Session</TableHead>
           <TableHead>Track Time</TableHead>
           <TableHead>Local Time</TableHead>
-          <TableHead></TableHead>
+          <TableHead className="text-center">
+            {sessionsInfo.at(0)?.isNext ||
+            sessionsInfo.at(0)?.isOngoing ||
+            sessionsInfo.at(0)?.hasFinished
+              ? "Status"
+              : ""}
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -109,7 +115,7 @@ export default function NextRaceTable() {
                   session.sessionName === "Race") ? (
                 <ResultsButton />
               ) : session.isOngoing ? (
-                <div className="inline-flex h-8 w-[13ch] select-none items-center justify-center rounded-md bg-red-600 px-3 text-xs text-neutral-50 shadow">
+                <div className="inline-flex h-8 w-[12ch] select-none items-center justify-center rounded-md bg-red-600 px-2 text-xs text-neutral-50 shadow">
                   <span>Ongoing</span>
                 </div>
               ) : (
