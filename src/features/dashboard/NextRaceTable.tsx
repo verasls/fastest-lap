@@ -8,6 +8,7 @@ import {
 } from "@/ui/Table";
 import SpinnerMini from "@/ui/SpinnerMini";
 import Countdown from "./Countdown";
+import Tag from "@/ui/Tag";
 import ResultsButton from "./ResultsButton";
 import { useNextRace } from "./useNextRace";
 import { Race, Session } from "@/services/apiRaces";
@@ -118,13 +119,9 @@ export default function NextRaceTable() {
                 session.sessionName !== "Qualifying" &&
                 session.sessionName !== "Sprint" &&
                 session.sessionName !== "Race" ? (
-                <div className="inline-flex h-8 w-[12ch] select-none items-center justify-center rounded-md bg-red-600 px-2 text-xs text-neutral-50 shadow">
-                  <span>Finished</span>
-                </div>
+                <Tag>Finished</Tag>
               ) : session.isOngoing ? (
-                <div className="inline-flex h-8 w-[12ch] select-none items-center justify-center rounded-md bg-red-600 px-2 text-xs text-neutral-50 shadow">
-                  <span>Ongoing</span>
-                </div>
+                <Tag>Ongoing</Tag>
               ) : (
                 ""
               )}
