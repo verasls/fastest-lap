@@ -114,6 +114,13 @@ export default function NextRaceTable() {
                   session.sessionName === "Sprint" ||
                   session.sessionName === "Race") ? (
                 <ResultsButton />
+              ) : session.hasFinished &&
+                session.sessionName !== "Qualifying" &&
+                session.sessionName !== "Sprint" &&
+                session.sessionName !== "Race" ? (
+                <div className="inline-flex h-8 w-[12ch] select-none items-center justify-center rounded-md bg-red-600 px-2 text-xs text-neutral-50 shadow">
+                  <span>Finished</span>
+                </div>
               ) : session.isOngoing ? (
                 <div className="inline-flex h-8 w-[12ch] select-none items-center justify-center rounded-md bg-red-600 px-2 text-xs text-neutral-50 shadow">
                   <span>Ongoing</span>
