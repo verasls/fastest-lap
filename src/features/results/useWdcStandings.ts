@@ -5,10 +5,10 @@ import {
 } from "@/services/apiStandings";
 
 export function useWdcStandings({
-  year,
+  season,
   round,
 }: {
-  year: number;
+  season: number;
   round: number;
 }) {
   const {
@@ -16,21 +16,21 @@ export function useWdcStandings({
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["wdcResults", year, round],
-    queryFn: () => getWdcStandings({ year, round }),
+    queryKey: ["wdcResults", season, round],
+    queryFn: () => getWdcStandings({ season, round }),
   });
 
   return { wdcResults, isLoading, error };
 }
 
-export function useCumulativeWdcStandings(year: number) {
+export function useCumulativeWdcStandings(season: number) {
   const {
     data: cumulativeWdcResults,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["cumulativeWdcResults", year],
-    queryFn: () => getCumulativeWdcStandings(year),
+    queryKey: ["cumulativeWdcResults", season],
+    queryFn: () => getCumulativeWdcStandings(season),
   });
 
   return { cumulativeWdcResults, isLoading, error };

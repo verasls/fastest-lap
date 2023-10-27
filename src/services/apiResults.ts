@@ -26,14 +26,14 @@ export type RaceResults = {
 };
 
 export async function getRaceResults({
-  year,
+  season,
   round,
 }: {
-  year: number;
+  season: number;
   round: number;
 }): Promise<RaceResults> {
   const response = await fetch(
-    `${API_URL_ERGAST}/${year}/${round}/results.json`
+    `${API_URL_ERGAST}/${season}/${round}/results.json`
   );
 
   if (!response.ok)

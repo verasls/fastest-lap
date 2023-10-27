@@ -26,14 +26,14 @@ export type CumulativeStandings = {
 };
 
 export async function getWdcStandings({
-  year,
+  season,
   round,
 }: {
-  year: number;
+  season: number;
   round: number;
 }): Promise<DriverStandingsInfo> {
   const response = await fetch(
-    `${API_URL_ERGAST}/${year}/${round}/driverStandings.json`
+    `${API_URL_ERGAST}/${season}/${round}/driverStandings.json`
   );
 
   if (!response.ok)
@@ -87,16 +87,16 @@ export async function getWdcStandings({
 }
 
 export async function getCumulativeWdcStandings(
-  year: number
+  season: number
 ): Promise<CumulativeStandings[]> {
   const currentDate = getCurrentDate();
-  const allRaces = await getAllRaces(year);
+  const allRaces = await getAllRaces(season);
   const roundNums = allRaces
     .filter((race) => race.date < currentDate)
     .map((race) => Number(race.round));
 
   const data = await Promise.all(
-    roundNums.map(async (round) => await getWdcStandings({ year, round }))
+    roundNums.map(async (round) => await getWdcStandings({ season, round }))
   );
 
   const cumulativeStandings = data.map((standingInfo) => {
@@ -134,14 +134,14 @@ export type ConstructorStandingsInfo = {
 };
 
 export async function getWccStandings({
-  year,
+  season,
   round,
 }: {
-  year: number;
+  season: number;
   round: number;
 }): Promise<ConstructorStandingsInfo> {
   const response = await fetch(
-    `${API_URL_ERGAST}/${year}/${round}/constructorStandings.json`
+    `${API_URL_ERGAST}/${season}/${round}/constructorStandings.json`
   );
 
   if (!response.ok)
@@ -183,16 +183,16 @@ export async function getWccStandings({
 }
 
 export async function getCumulativeWccStandings(
-  year: number
+  season: number
 ): Promise<CumulativeStandings[]> {
   const currentDate = getCurrentDate();
-  const allRaces = await getAllRaces(year);
+  const allRaces = await getAllRaces(season);
   const roundNums = allRaces
     .filter((race) => race.date < currentDate)
     .map((race) => Number(race.round));
 
   const data = await Promise.all(
-    roundNums.map(async (round) => await getWccStandings({ year, round }))
+    roundNums.map(async (round) => await getWccStandings({ season, round }))
   );
 
   const cumulativeStandings = data.map((standingInfo) => {

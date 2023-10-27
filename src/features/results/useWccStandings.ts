@@ -5,10 +5,10 @@ import {
 } from "@/services/apiStandings";
 
 export function useWccStandings({
-  year,
+  season,
   round,
 }: {
-  year: number;
+  season: number;
   round: number;
 }) {
   const {
@@ -16,21 +16,21 @@ export function useWccStandings({
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["wccResults", year, round],
-    queryFn: () => getWccStandings({ year, round }),
+    queryKey: ["wccResults", season, round],
+    queryFn: () => getWccStandings({ season, round }),
   });
 
   return { wccResults, isLoading, error };
 }
 
-export function useCumulativeWccStandings(year: number) {
+export function useCumulativeWccStandings(season: number) {
   const {
     data: cumulativeWccResults,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["cumulativeWccResults", year],
-    queryFn: () => getCumulativeWccStandings(year),
+    queryKey: ["cumulativeWccResults", season],
+    queryFn: () => getCumulativeWccStandings(season),
   });
 
   return { cumulativeWccResults, isLoading, error };

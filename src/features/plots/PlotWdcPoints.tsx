@@ -12,17 +12,17 @@ import CustomLegend from "./CustomLegend";
 import CustomTooltip from "./CustomTooltip";
 import { wdcPlotColors } from "@/lib/colors";
 import { CumulativeStandings } from "@/services/apiStandings";
-import { getCurrentYear } from "@/lib/helpers";
-import {useWindowWidth} from "@/hooks/useWindowWidth";
+import { getCurrentSeason } from "@/lib/helpers";
+import { useWindowWidth } from "@/hooks/useWindowWidth";
 
 export default function PlotWdcPoints({
   cumulativeWdcResults,
 }: {
   cumulativeWdcResults: CumulativeStandings[];
 }) {
-  const windowWidth = useWindowWidth()
+  const windowWidth = useWindowWidth();
 
-  const currentYear = getCurrentYear();
+  const currentSeason = getCurrentSeason();
   const drivers: string[] = Object.keys(cumulativeWdcResults!.at(-1)!).filter(
     (key) => key !== "season" && key !== "round"
   );
@@ -30,7 +30,7 @@ export default function PlotWdcPoints({
   const round0 = Object.keys(cumulativeWdcResults!.at(0)!).reduce<{
     [key: string]: number | string;
   }>((accumulator, key) => {
-    if (key === "season") accumulator[key] = String(currentYear);
+    if (key === "season") accumulator[key] = String(currentSeason);
     if (key === "round") accumulator[key] = "";
     if (key !== "season" && key !== "round") accumulator[key] = 0;
 

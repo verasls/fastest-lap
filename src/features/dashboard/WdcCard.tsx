@@ -3,20 +3,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import Spinner from "@/ui/Spinner";
 import PlotWdcPoints from "../plots/PlotWdcPoints";
 import PlotWdcStandings from "../plots/PlotWdcStandings";
-import { getCurrentYear } from "@/lib/helpers";
+import { getCurrentSeason } from "@/lib/helpers";
 import { useCumulativeWdcStandings } from "../results/useWdcStandings";
 import { CumulativeStandings } from "@/services/apiStandings";
 
 export default function WdcCard() {
-  const currentYear = getCurrentYear();
+  const currentSeason = getCurrentSeason();
   const { cumulativeWdcResults, isLoading } =
-    useCumulativeWdcStandings(currentYear);
+    useCumulativeWdcStandings(currentSeason);
 
   return (
     <Card className="col-span-full">
       <CardHeader>
         <CardTitle className="text-xl">
-          {currentYear} World Drivers&apos; Championship
+          {currentSeason} World Drivers&apos; Championship
         </CardTitle>
       </CardHeader>
       <CardContent>

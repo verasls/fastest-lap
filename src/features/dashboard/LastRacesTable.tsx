@@ -7,12 +7,12 @@ type LastRacesTableProps = { lastRaces: Race[] };
 export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
   const lastRacesInfo = lastRaces
     .map((race) => ({
-      year: new Date(race.date).getFullYear(),
+      season: new Date(race.date).getFullYear(),
       round: race.round,
     }))
     .sort((a, b) => {
-      if (a.year < b.year) return 1;
-      if (a.year > b.year) return -1;
+      if (a.season < b.season) return 1;
+      if (a.season > b.season) return -1;
 
       return Number(b.round) - Number(a.round);
     });
@@ -31,9 +31,9 @@ export default function LastRacesTable({ lastRaces }: LastRacesTableProps) {
       <TableBody>
         {lastRacesInfo.map((race) => (
           <LastRacesTableBody
-            year={race.year}
+            season={race.season}
             round={Number(race.round)}
-            key={`${race.year}${race.round}`}
+            key={`${race.season}${race.round}`}
           />
         ))}
       </TableBody>

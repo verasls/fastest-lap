@@ -6,13 +6,13 @@ import { useRaceResults } from "../results/useRaceResults";
 import { getCountryFlag } from "@/lib/helpers";
 import { tagColors } from "@/lib/colors";
 
-type LastRacesTableBodyProps = { year: number; round: number };
+type LastRacesTableBodyProps = { season: number; round: number };
 
 export default function LastRacesTableBody({
-  year,
+  season,
   round,
 }: LastRacesTableBodyProps) {
-  const { raceResults, isLoading } = useRaceResults({ year, round });
+  const { raceResults, isLoading } = useRaceResults({ season, round });
 
   if (isLoading)
     return (
@@ -28,7 +28,7 @@ export default function LastRacesTableBody({
     );
   if (!raceResults) return <Empty resourceName="race results" />;
 
-  const season = new Date(raceResults.raceInfo.date).getFullYear();
+  const raceSeason = new Date(raceResults.raceInfo.date).getFullYear();
 
   const raceDate = new Intl.DateTimeFormat("en", {
     day: "2-digit",
@@ -46,7 +46,7 @@ export default function LastRacesTableBody({
             {getCountryFlag(raceResults.raceInfo.country)}
           </span>{" "}
           <span className="decoration-neutral-800 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-2">
-            {`${season} ${raceResults.raceInfo.raceName.replace(
+            {`${raceSeason} ${raceResults.raceInfo.raceName.replace(
               "Grand Prix",
               "GP"
             )}`}

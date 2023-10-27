@@ -1,22 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/Card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import Spinner from "@/ui/Spinner";
-import { getCurrentYear } from "@/lib/helpers";
+import { getCurrentSeason } from "@/lib/helpers";
 import { useCumulativeWccStandings } from "../results/useWccStandings";
 import { CumulativeStandings } from "@/services/apiStandings";
 import PlotWccPoints from "../plots/PlotWccPoints";
 import PlotWccStandings from "../plots/PlotWccStandings";
 
 export default function WccCard() {
-  const currentYear = getCurrentYear();
+  const currentSeason = getCurrentSeason();
   const { cumulativeWccResults, isLoading } =
-    useCumulativeWccStandings(currentYear);
+    useCumulativeWccStandings(currentSeason);
 
   return (
     <Card className="col-span-full">
       <CardHeader>
         <CardTitle className="text-xl">
-          {currentYear} World Constructors&apos; Championship
+          {currentSeason} World Constructors&apos; Championship
         </CardTitle>
       </CardHeader>
       <CardContent>

@@ -2,10 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getRaceResults } from "@/services/apiResults";
 
 export function useRaceResults({
-  year,
+  season,
   round,
 }: {
-  year: number;
+  season: number;
   round: number;
 }) {
   const {
@@ -13,8 +13,8 @@ export function useRaceResults({
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["raceResults", year, round],
-    queryFn: () => getRaceResults({ year, round }),
+    queryKey: ["raceResults", season, round],
+    queryFn: () => getRaceResults({ season, round }),
   });
 
   return { raceResults, isLoading, error };

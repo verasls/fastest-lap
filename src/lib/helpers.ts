@@ -1,6 +1,6 @@
 import countryFlagEmoji from "country-flag-emoji";
 
-export function getCurrentYear(): number {
+export function getCurrentSeason(): number {
   return new Date().getFullYear();
 }
 
@@ -13,14 +13,14 @@ export function getCurrentDate(): string {
 }
 
 type UserInfo = {
-  currentYear: number;
+  currentSeason: number;
   currentDate: string;
 };
 
 export function getUserInfo(): UserInfo {
-  const currentYear = getCurrentYear();
+  const currentSeason = getCurrentSeason();
   const currentDate = getCurrentDate();
-  return { currentYear, currentDate };
+  return { currentSeason, currentDate };
 }
 
 export function getdateDifference(date1: string, date2: string): number {
