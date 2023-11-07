@@ -5,6 +5,7 @@ import Empty from "@/ui/Empty";
 import { useRaceResults } from "../results/useRaceResults";
 import { getCountryFlag } from "@/lib/helpers";
 import { tagColors } from "@/lib/colors";
+import { useWindowWidth } from "@/hooks/useWindowWidth";
 
 type LastRacesTableBodyProps = { season: number; round: number };
 
@@ -13,11 +14,12 @@ export default function LastRacesTableBody({
   round,
 }: LastRacesTableBodyProps) {
   const { raceResults, isLoading } = useRaceResults({ season, round });
+  const windowWidth = useWindowWidth();
 
   if (isLoading)
     return (
       <TableRow>
-        {Array(5)
+        {Array(windowWidth < 470 ? 4 : 5)
           .fill(1)
           .map((_, i) => (
             <TableCell key={i}>
